@@ -1,11 +1,5 @@
 @font-face {
   font-family: OpenSans;
-  src: url(../fonts/OpenSans-Regular.ttf);
-  font-weight: regular;
-  font-style: regular;
-}
-@font-face {
-  font-family: OpenSans;
   src: url(../fonts/OpenSans-SemiBold.ttf);
   font-weight: semibold;
   font-style: semibold;
@@ -15,6 +9,12 @@
   src: url(../fonts/OpenSans-Bold.ttf);
   font-weight: bold;
   font-style: bold;
+}
+@font-face {
+  font-family: OpenSans;
+  src: url(../fonts/OpenSans-Regular.ttf);
+  font-weight: regular;
+  font-style: regular;
 }
 body {
   font-family: "OpenSans", regular;
@@ -110,6 +110,135 @@ body {
 }
 .topBar .search .resultsBox .result:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.pageBody {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pageBody .mainBody {
+  width: 75%;
+  height: calc(100vh - 120px);
+  overflow: auto;
+  margin-right: 20px;
+}
+.pageBody .mainBody .textareaDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.pageBody .mainBody .textareaDiv .title {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 20px;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.pageBody .mainBody .textareaDiv .textareaPublisher {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 20px;
+  outline: none;
+  border: none;
+  width: calc(100% - 45px);
+  transition: 0.2s;
+  border: 2px solid rgba(0, 0, 0, 0);
+  font-family: "OpenSans", regular;
+  font-size: 13px;
+  font-weight: normal;
+  resize: none;
+  height: 100px;
+}
+.pageBody .mainBody .textareaDiv .textareaPublisher:hover {
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+.pageBody .mainBody .textareaDiv .textareaPublisher::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0);
+}
+.pageBody .mainBody .textareaDiv .textareaPublisher::-webkit-scrollbar-thumb {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+.pageBody .mainBody .textareaDiv .publishButtonDiv {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+.pageBody .mainBody .textareaDiv .publishButtonDiv button {
+  width: auto;
+  float: right;
+  bottom: 0;
+  background-color: #0d6efd;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  transition: 0.1s;
+  cursor: pointer;
+  outline: none;
+}
+.pageBody .mainBody .textareaDiv .publishButtonDiv button > i {
+  margin-right: 10px;
+}
+.pageBody .mainBody .textareaDiv .publishButtonDiv button:hover {
+  background-color: #0f5fd8;
+  border: none;
+}
+.pageBody .mainBody .textareaDiv .publishButtonDiv button:active {
+  box-shadow: 0px 0px 10px 1px #0f5fd8;
+  border: none;
+}
+.pageBody .mainBody .textareaDiv .publishButtonDiv button:focus {
+  border: none;
+}
+.pageBody .mainBody .posts {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  margin-right: 10px;
+}
+.pageBody .mainBody .posts .post {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.pageBody .mainBody .posts .post .title {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+.pageBody .mainBody .posts .post .title .datetime {
+  float: right;
+}
+.pageBody .mainBody .posts .post .title .datetime .date {
+  margin-right: 20px;
+}
+.pageBody .mainBody .posts .post .content {
+  margin-top: 15px;
+  text-align: justify;
+  font-size: 16px;
+  font-family: "OpenSans", regular;
+}
+.pageBody .mainBody::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0);
+}
+.pageBody .mainBody::-webkit-scrollbar-thumb {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+.pageBody .trends {
+  width: 25%;
+  border: 1px solid black;
 }
 
 /*# sourceMappingURL=style.css.map */

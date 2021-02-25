@@ -26,7 +26,7 @@ const TopBar = ({filteredUsers, searchValue, onSearch, onDeleteSearch}) => {
                         <div className="resultsBox">
                             {
                                 filteredUsers.map(user => (
-                                    <div className="result" key={user.id}>
+                                    <div className="result" key={`resultUser-${user.id}`}>
                                         <i className="bi bi-person-circle"></i>
                                         <span>{user.name}</span>
                                     </div>
