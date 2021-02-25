@@ -64,6 +64,9 @@ body {
 .topBar .search .clearButton:hover {
   background-color: rgba(0, 0, 0, 0.15);
 }
+.topBar .search .clearButton:focus {
+  background-color: rgba(0, 0, 0, 0.2);
+}
 .topBar .search .searchBox {
   background-color: rgba(0, 0, 0, 0.1);
   outline: none;
@@ -75,17 +78,15 @@ body {
   width: 100%;
   height: 20px;
   transition: 0.2s;
-  border: 2px solid rgba(0, 0, 0, 0);
   font-family: "OpenSans", regular;
   font-size: 13px;
   font-weight: normal;
 }
 .topBar .search .searchBox:hover {
   background-color: rgba(0, 0, 0, 0.15);
-  border: 2px solid rgba(0, 0, 0, 0);
 }
 .topBar .search .searchBox:focus {
-  border: 2px solid #0d6efd;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .topBar .search .resultsBox {
   position: absolute;
@@ -110,6 +111,9 @@ body {
 }
 .topBar .search .resultsBox .result:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+.topBar .search .resultsBox .result:active {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .pageBody {
@@ -138,6 +142,13 @@ body {
   border: none;
   font-size: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  transition: 0.2s;
+}
+.pageBody .mainBody .textareaDiv .title:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.pageBody .mainBody .textareaDiv .title:focus {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .pageBody .mainBody .textareaDiv .textareaPublisher {
   background-color: rgba(0, 0, 0, 0);
@@ -154,7 +165,10 @@ body {
   height: 100px;
 }
 .pageBody .mainBody .textareaDiv .textareaPublisher:hover {
-  border: 2px solid rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.pageBody .mainBody .textareaDiv .textareaPublisher:focus {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .pageBody .mainBody .textareaDiv .textareaPublisher::-webkit-scrollbar {
   width: 8px;

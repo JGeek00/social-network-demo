@@ -71,6 +71,10 @@ body {
         .clearButton:hover {
             background-color: rgba(0, 0, 0, 0.15);
         }
+
+        .clearButton:focus {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
         
         .searchBox {
             background-color: rgba(0, 0, 0, 0.1);
@@ -83,7 +87,6 @@ body {
             width: 100%;
             height: 20px;
             transition: 0.2s;
-            border: 2px solid rgba(0, 0, 0, 0.0);
             font-family: "OpenSans", regular;
             font-size: 13px;
             font-weight: normal;
@@ -91,11 +94,10 @@ body {
     
         .searchBox:hover {
             background-color: rgba(0, 0, 0, 0.15);
-            border: 2px solid rgba(0, 0, 0, 0.0);
         }
 
         .searchBox:focus {
-            border: 2px solid #0d6efd;
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         .resultsBox {
@@ -123,6 +125,10 @@ body {
 
             .result:hover {
                 background-color: rgba(0, 0, 0, 0.1);
+            }
+
+            .result:active{
+                background-color: rgba(0, 0, 0, 0.2);
             }
         }
     }
@@ -155,6 +161,15 @@ body {
                 border: none;
                 font-size: 20px;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+                transition: 0.2s;
+            }
+
+            .title:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+
+            .title:focus {
+                background-color: rgba(0, 0, 0, 0.1);
             }
 
             .textareaPublisher {
@@ -173,7 +188,11 @@ body {
             }
     
             .textareaPublisher:hover {
-                border: 2px solid rgba(0, 0, 0, 0.0);
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+            
+            .textareaPublisher:focus {
+                background-color: rgba(0, 0, 0, 0.1);
             }
 
             .textareaPublisher::-webkit-scrollbar {
