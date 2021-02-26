@@ -231,9 +231,14 @@ body {
 }
 .pageBody .mainBody .posts .post .title .datetime {
   float: right;
+  font-weight: normal;
+  font-size: 16px;
+}
+.pageBody .mainBody .posts .post .title .datetime i {
+  margin-right: 10px;
 }
 .pageBody .mainBody .posts .post .title .datetime .date {
-  margin-right: 20px;
+  margin-right: 30px;
 }
 .pageBody .mainBody .posts .post .content {
   margin-top: 15px;

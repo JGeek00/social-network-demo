@@ -7,6 +7,7 @@ import Posts from './Posts';
 
 class Main extends Component {
     state = {
+        // Users
         users: [
             {
                 id: 1,
@@ -35,57 +36,14 @@ class Main extends Component {
         ],
         filteredUsers: [],
         searchText: '',
-        posts: [
-            {
-                id: 1,
-                title: "Lorem",
-                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum voluptate temporibus dolores blanditiis voluptatem quam amet qui quaerat beatae, iste cum, quidem inventore! Minima sunt delectus laudantium numquam optio.\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla praesentium tempora ea culpa!\nIn nostrum voluptatibus reiciendis earum, labore sapiente eius similique voluptatem ipsam magni neque harum inventore officiis mollitia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis saepe cum modi pariatur debitis ad, veniam distinctio optio quibusdam eum officia dolore nobis eius magni expedita porro cumque id nulla. Et nemo deleniti earum voluptate cumque quaerat assumenda, tempora in asperiores fugit ut nobis quasi quo laborum nostrum mollitia laboriosam consequuntur maiores aut. Nam reprehenderit cum dolorem sed eos id. Quos nostrum ipsum minima suscipit necessitatibus sapiente.\nAutem placeat, nulla possimus quam fugit, aliquam quo tenetur voluptate numquam quis voluptatem, nobis earum illo. Asperiores atque voluptatem necessitatibus pariatur quia quidem.",
-            },
-            {
-                id: 1,
-                title: "Lorem",
-                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum voluptate temporibus dolores blanditiis voluptatem quam amet qui quaerat beatae, iste cum, quidem inventore! Minima sunt delectus laudantium numquam optio.\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla praesentium tempora ea culpa!\nIn nostrum voluptatibus reiciendis earum, labore sapiente eius similique voluptatem ipsam magni neque harum inventore officiis mollitia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis saepe cum modi pariatur debitis ad, veniam distinctio optio quibusdam eum officia dolore nobis eius magni expedita porro cumque id nulla. Et nemo deleniti earum voluptate cumque quaerat assumenda, tempora in asperiores fugit ut nobis quasi quo laborum nostrum mollitia laboriosam consequuntur maiores aut. Nam reprehenderit cum dolorem sed eos id. Quos nostrum ipsum minima suscipit necessitatibus sapiente.\nAutem placeat, nulla possimus quam fugit, aliquam quo tenetur voluptate numquam quis voluptatem, nobis earum illo. Asperiores atque voluptatem necessitatibus pariatur quia quidem.",
-            },
-            {
-                id: 1,
-                title: "Lorem",
-                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum voluptate temporibus dolores blanditiis voluptatem quam amet qui quaerat beatae, iste cum, quidem inventore! Minima sunt delectus laudantium numquam optio.\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla praesentium tempora ea culpa!\nIn nostrum voluptatibus reiciendis earum, labore sapiente eius similique voluptatem ipsam magni neque harum inventore officiis mollitia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis saepe cum modi pariatur debitis ad, veniam distinctio optio quibusdam eum officia dolore nobis eius magni expedita porro cumque id nulla. Et nemo deleniti earum voluptate cumque quaerat assumenda, tempora in asperiores fugit ut nobis quasi quo laborum nostrum mollitia laboriosam consequuntur maiores aut. Nam reprehenderit cum dolorem sed eos id. Quos nostrum ipsum minima suscipit necessitatibus sapiente.\nAutem placeat, nulla possimus quam fugit, aliquam quo tenetur voluptate numquam quis voluptatem, nobis earum illo. Asperiores atque voluptatem necessitatibus pariatur quia quidem.",
-            },
-            {
-                id: 1,
-                title: "Lorem",
-                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum voluptate temporibus dolores blanditiis voluptatem quam amet qui quaerat beatae, iste cum, quidem inventore! Minima sunt delectus laudantium numquam optio.\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla praesentium tempora ea culpa!\nIn nostrum voluptatibus reiciendis earum, labore sapiente eius similique voluptatem ipsam magni neque harum inventore officiis mollitia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis saepe cum modi pariatur debitis ad, veniam distinctio optio quibusdam eum officia dolore nobis eius magni expedita porro cumque id nulla. Et nemo deleniti earum voluptate cumque quaerat assumenda, tempora in asperiores fugit ut nobis quasi quo laborum nostrum mollitia laboriosam consequuntur maiores aut. Nam reprehenderit cum dolorem sed eos id. Quos nostrum ipsum minima suscipit necessitatibus sapiente.\nAutem placeat, nulla possimus quam fugit, aliquam quo tenetur voluptate numquam quis voluptatem, nobis earum illo. Asperiores atque voluptatem necessitatibus pariatur quia quidem.",
-            },
-            {
-                id: 1,
-                title: "Lorem",
-                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum voluptate temporibus dolores blanditiis voluptatem quam amet qui quaerat beatae, iste cum, quidem inventore! Minima sunt delectus laudantium numquam optio.\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla praesentium tempora ea culpa!\nIn nostrum voluptatibus reiciendis earum, labore sapiente eius similique voluptatem ipsam magni neque harum inventore officiis mollitia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis saepe cum modi pariatur debitis ad, veniam distinctio optio quibusdam eum officia dolore nobis eius magni expedita porro cumque id nulla. Et nemo deleniti earum voluptate cumque quaerat assumenda, tempora in asperiores fugit ut nobis quasi quo laborum nostrum mollitia laboriosam consequuntur maiores aut. Nam reprehenderit cum dolorem sed eos id. Quos nostrum ipsum minima suscipit necessitatibus sapiente.\nAutem placeat, nulla possimus quam fugit, aliquam quo tenetur voluptate numquam quis voluptatem, nobis earum illo. Asperiores atque voluptatem necessitatibus pariatur quia quidem.",
-            },
-            {
-                id: 1,
-                title: "Lorem",
-                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum voluptate temporibus dolores blanditiis voluptatem quam amet qui quaerat beatae, iste cum, quidem inventore! Minima sunt delectus laudantium numquam optio.\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla praesentium tempora ea culpa!\nIn nostrum voluptatibus reiciendis earum, labore sapiente eius similique voluptatem ipsam magni neque harum inventore officiis mollitia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis saepe cum modi pariatur debitis ad, veniam distinctio optio quibusdam eum officia dolore nobis eius magni expedita porro cumque id nulla. Et nemo deleniti earum voluptate cumque quaerat assumenda, tempora in asperiores fugit ut nobis quasi quo laborum nostrum mollitia laboriosam consequuntur maiores aut. Nam reprehenderit cum dolorem sed eos id. Quos nostrum ipsum minima suscipit necessitatibus sapiente.\nAutem placeat, nulla possimus quam fugit, aliquam quo tenetur voluptate numquam quis voluptatem, nobis earum illo. Asperiores atque voluptatem necessitatibus pariatur quia quidem.",
-            },
-            {
-                id: 1,
-                title: "Lorem",
-                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum voluptate temporibus dolores blanditiis voluptatem quam amet qui quaerat beatae, iste cum, quidem inventore! Minima sunt delectus laudantium numquam optio.\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla praesentium tempora ea culpa!\nIn nostrum voluptatibus reiciendis earum, labore sapiente eius similique voluptatem ipsam magni neque harum inventore officiis mollitia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis saepe cum modi pariatur debitis ad, veniam distinctio optio quibusdam eum officia dolore nobis eius magni expedita porro cumque id nulla. Et nemo deleniti earum voluptate cumque quaerat assumenda, tempora in asperiores fugit ut nobis quasi quo laborum nostrum mollitia laboriosam consequuntur maiores aut. Nam reprehenderit cum dolorem sed eos id. Quos nostrum ipsum minima suscipit necessitatibus sapiente.\nAutem placeat, nulla possimus quam fugit, aliquam quo tenetur voluptate numquam quis voluptatem, nobis earum illo. Asperiores atque voluptatem necessitatibus pariatur quia quidem.",
-            },
-            {
-                id: 1,
-                title: "Lorem",
-                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum voluptate temporibus dolores blanditiis voluptatem quam amet qui quaerat beatae, iste cum, quidem inventore! Minima sunt delectus laudantium numquam optio.\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla praesentium tempora ea culpa!\nIn nostrum voluptatibus reiciendis earum, labore sapiente eius similique voluptatem ipsam magni neque harum inventore officiis mollitia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis saepe cum modi pariatur debitis ad, veniam distinctio optio quibusdam eum officia dolore nobis eius magni expedita porro cumque id nulla. Et nemo deleniti earum voluptate cumque quaerat assumenda, tempora in asperiores fugit ut nobis quasi quo laborum nostrum mollitia laboriosam consequuntur maiores aut. Nam reprehenderit cum dolorem sed eos id. Quos nostrum ipsum minima suscipit necessitatibus sapiente.\nAutem placeat, nulla possimus quam fugit, aliquam quo tenetur voluptate numquam quis voluptatem, nobis earum illo. Asperiores atque voluptatem necessitatibus pariatur quia quidem.",
-            },
-            {
-                id: 1,
-                title: "Lorem",
-                content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et illum voluptate temporibus dolores blanditiis voluptatem quam amet qui quaerat beatae, iste cum, quidem inventore! Minima sunt delectus laudantium numquam optio.\nLorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla praesentium tempora ea culpa!\nIn nostrum voluptatibus reiciendis earum, labore sapiente eius similique voluptatem ipsam magni neque harum inventore officiis mollitia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis saepe cum modi pariatur debitis ad, veniam distinctio optio quibusdam eum officia dolore nobis eius magni expedita porro cumque id nulla. Et nemo deleniti earum voluptate cumque quaerat assumenda, tempora in asperiores fugit ut nobis quasi quo laborum nostrum mollitia laboriosam consequuntur maiores aut. Nam reprehenderit cum dolorem sed eos id. Quos nostrum ipsum minima suscipit necessitatibus sapiente.\nAutem placeat, nulla possimus quam fugit, aliquam quo tenetur voluptate numquam quis voluptatem, nobis earum illo. Asperiores atque voluptatem necessitatibus pariatur quia quidem.",
-            },
-        ],
+
+        // Posts
+        posts: [],
         writingPost: {
             title: '',
             body: ''
-        }
+        },
+        lastId: 0,
     }
 
     onSearch = (e) => {
@@ -133,7 +91,22 @@ class Main extends Component {
     }
 
     publishPost = () => {
+        var newId = this.state.lastId;
+        newId++;
 
+        const datetime = new Date();
+
+        const newPosts = [...this.state.posts, {
+            id: newId,
+            title: this.state.writingPost.title,
+            content: this.state.writingPost.body,
+            datetime: datetime
+        }];
+
+        this.setState({
+            posts: newPosts,
+            lastId: newId
+        });
     }
     
     render() { 
