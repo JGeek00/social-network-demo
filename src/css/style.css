@@ -212,7 +212,7 @@ body {
   height: 35px;
 }
 .react-responsive-modal-container .react-responsive-modal-modal .textareaDiv .buttonsDiv .closeButton > i {
-  margin-right: 10px;
+  margin-right: 5px;
   font-size: 20px;
 }
 .react-responsive-modal-container .react-responsive-modal-modal .textareaDiv .buttonsDiv .closeButton:hover {
@@ -309,6 +309,9 @@ body {
   box-shadow: 0px 0px 10px 1px #0f5fd8;
   border: none;
 }
+.pageBody .mainBody .postsSection .head .publishButton:focus {
+  border: none;
+}
 .pageBody .mainBody .postsSection .postsList {
   display: flex;
   flex-direction: column;
@@ -357,9 +360,44 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 5px;
 }
-.pageBody .trends {
-  width: 25%;
-  border: 1px solid black;
+.pageBody .trendsSection {
+  width: 23%;
+  margin-left: 2%;
+  margin-top: 10px;
+  margin-right: 30px;
+  height: calc(100vh - 120px);
+}
+.pageBody .trendsSection .sectionTitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+.pageBody .trendsSection .trendsList {
+  max-height: calc(100% - 50px);
+  overflow: auto;
+}
+.pageBody .trendsSection .trendsList .trend {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.pageBody .trendsSection .trendsList .trend:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.pageBody .trendsSection .trendsList .trend:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.pageBody .trendsSection .trendsList::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0);
+}
+.pageBody .trendsSection .trendsList::-webkit-scrollbar-thumb {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

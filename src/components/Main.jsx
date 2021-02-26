@@ -46,6 +46,82 @@ class Main extends Component {
         },
         lastId: 0,
         publishButtonDisabled: true,
+
+        // Trends
+        trends: [
+            {
+                id: 1,
+                name: "Football"
+            },
+            {
+                id: 2,
+                name: "Computers"
+            },
+            {
+                id: 3,
+                name: "Politics"
+            },
+            {
+                id: 4,
+                name: "Music"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+            {
+                id: 5,
+                name: "Science"
+            },
+        ]
     }
 
     onSearch = (e) => {
@@ -162,7 +238,7 @@ class Main extends Component {
                         <Publisher publishPost={this.publishPost} handleWritePost={this.handleWritePost} titleText={this.state.writingPost.title} bodyText={this.state.writingPost.body} publishButtonDisabled={this.state.publishButtonDisabled} closePublishDialog={this.closePublishDialog} writeDialogOpen={this.state.writeDialogOpen}/>
                         <Posts posts={this.state.posts} openPublishDialog={this.openPublishDialog}/>
                     </div>
-                    <Trends />
+                    <Trends trends={this.state.trends}/>
                 </div>
             </div>
         );

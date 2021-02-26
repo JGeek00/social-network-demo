@@ -242,7 +242,7 @@ body {
                     height: 35px;
         
                     > i {
-                        margin-right: 10px;
+                        margin-right: 5px;
                         font-size: 20px;
                     }
                 }
@@ -361,6 +361,7 @@ body {
                 }
         
                 .publishButton:focus {
+                    border: none;
                 }
                   
             }
@@ -425,8 +426,50 @@ body {
         border-radius: 5px;
     }
     
-    .trends {
-        width: 25%;
-        border: 1px solid black;
+    .trendsSection {
+        width: 23%;
+        margin-left: 2%;
+        margin-top: 10px;
+        margin-right: 30px;
+        height: calc(100vh - 120px);
+
+        .sectionTitle {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .trendsList {
+            max-height: calc(100% - 50px);
+            overflow: auto;
+
+            .trend {
+                padding: 10px;
+                border-radius: 5px;
+                background-color: rgba(0, 0, 0, 0.1);
+                margin-top: 10px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                margin-right: 10px;
+            }
+
+            .trend:hover {
+                background-color: rgba(0, 0, 0, 0.15);
+            }
+
+            .trend:active {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .trendsList::-webkit-scrollbar {
+            width: 8px;
+            background-color: rgba(0, 0, 0, 0.0);
+        }
+    
+        .trendsList::-webkit-scrollbar-thumb {
+            width: 8px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
     }
 }
