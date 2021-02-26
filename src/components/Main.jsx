@@ -69,58 +69,6 @@ class Main extends Component {
                 id: 5,
                 name: "Science"
             },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
-            {
-                id: 5,
-                name: "Science"
-            },
         ]
     }
 

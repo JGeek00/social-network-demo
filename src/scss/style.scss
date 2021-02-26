@@ -312,13 +312,13 @@ body {
 
     .mainBody {
         width: 75%;
-        height: calc(100vh - 120px);
-        overflow: auto;
+        height: calc(100vh - 130px);
         margin-right: 20px;
 
         .postsSection {
             margin-top: 10px;
             margin-left: 10px;
+            height: 100%;
 
             .head {
                 display: flex;
@@ -370,13 +370,17 @@ body {
                 display: flex;
                 flex-direction: column;
                 margin: 25px;
+                margin-top: 10px;
                 margin-right: 10px;
+                max-height: calc(100% - 60px);
+                overflow: auto;
     
                 .post {
                     border-radius: 5px;
                     background-color: rgba(0, 0, 0, 0.1);
                     padding: 20px;
                     margin-bottom: 20px;
+                    margin-right: 10px;
     
                     .title {
                         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -407,23 +411,23 @@ body {
                     }
                 }
             }
+
+            .postsList::-webkit-scrollbar {
+                width: 8px;
+                background-color: rgba(0, 0, 0, 0.0);
+            }
+        
+            .postsList::-webkit-scrollbar-thumb {
+                width: 8px;
+                background-color: rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+            }
     
             .noPosts {
                 text-align: center;
                 margin-top: 50px;
             }
         }
-    }
-
-    .mainBody::-webkit-scrollbar {
-        width: 8px;
-        background-color: rgba(0, 0, 0, 0.0);
-    }
-
-    .mainBody::-webkit-scrollbar-thumb {
-        width: 8px;
-        background-color: rgba(0, 0, 0, 0.3);
-        border-radius: 5px;
     }
     
     .trendsSection {
@@ -436,6 +440,7 @@ body {
         .sectionTitle {
             font-size: 25px;
             font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .trendsList {
