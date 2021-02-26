@@ -211,6 +211,10 @@ body {
 .pageBody .mainBody .textareaDiv .publishButtonDiv button:focus {
   border: none;
 }
+.pageBody .mainBody .textareaDiv .publishButtonDiv button:disabled {
+  background-color: #6c91c9;
+  box-shadow: none;
+}
 .pageBody .mainBody .posts {
   display: flex;
   flex-direction: column;

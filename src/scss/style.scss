@@ -242,6 +242,11 @@ body {
                 button:focus {
                     border: none;
                 }
+
+                button:disabled {
+                    background-color: #6c91c9;
+                    box-shadow: none;
+                }
             }            
         }
 

@@ -44,6 +44,7 @@ class Main extends Component {
             body: ''
         },
         lastId: 0,
+        publishButtonDisabled: true,
     }
 
     onSearch = (e) => {
@@ -73,6 +74,17 @@ class Main extends Component {
     handleWritePost = (e) => {
         const {name, value} = e.target;
         if (name === 'title') {
+            if (value !== '' && this.state.writingPost.body !== '') {
+                this.setState({
+                    publishButtonDisabled: false
+                });
+            }
+            else {
+                this.setState({
+                    publishButtonDisabled: true
+                });
+            }
+
             this.setState({
                 writingPost: {
                     title: value,
@@ -81,6 +93,17 @@ class Main extends Component {
             })
         }
         else if (name === 'body') {
+            if (this.state.writingPost.title !== '' && value !== '') {
+                this.setState({
+                    publishButtonDisabled: false
+                });
+            }
+            else {
+                this.setState({
+                    publishButtonDisabled: true
+                });
+            }
+
             this.setState({
                 writingPost: {
                     title: this.state.writingPost.title,
@@ -88,6 +111,7 @@ class Main extends Component {
                 }
             })
         }
+
     }
 
     publishPost = () => {
@@ -105,7 +129,12 @@ class Main extends Component {
 
         this.setState({
             posts: newPosts,
-            lastId: newId
+            lastId: newId,
+            writingPost: {
+                title: '',
+                body: ''
+            },
+            publishButtonDisabled: true
         });
     }
     
@@ -115,7 +144,7 @@ class Main extends Component {
                 <TopBar filteredUsers={this.state.filteredUsers} searchValue={this.state.searchText} onSearch={this.onSearch} onDeleteSearch={this.onDeleteSearch} />
                 <div className="pageBody">
                     <div className="mainBody">
-                        <Publisher publishPost={this.publishPost} handleWritePost={this.handleWritePost} titleText={this.state.writingPost.title} bodyText={this.state.writingPost.body}/>
+                        <Publisher publishPost={this.publishPost} handleWritePost={this.handleWritePost} titleText={this.state.writingPost.title} bodyText={this.state.writingPost.body} publishButtonDisabled={this.state.publishButtonDisabled}/>
                         <Posts posts={this.state.posts}/>
                     </div>
                     <Trends />
