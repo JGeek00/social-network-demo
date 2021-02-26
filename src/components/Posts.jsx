@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Posts = ({posts}) => {
+const Posts = ({posts, openPublishDialog}) => {
     return (
         <div className="posts">
+            <button onClick={openPublishDialog}>Open modal</button>
             {
                 posts.length > 0 ? (
                     (
@@ -22,7 +23,9 @@ const Posts = ({posts}) => {
                         ))
                     )
                 ) : (
-                    <div></div>
+                    <div className="noPosts">
+                        <h3>There's no posts available to display here.</h3>
+                    </div>
                 )
             }
         </div>

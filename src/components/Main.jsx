@@ -39,6 +39,7 @@ class Main extends Component {
 
         // Posts
         posts: [],
+        writeDialogOpen: false,
         writingPost: {
             title: '',
             body: ''
@@ -70,6 +71,18 @@ class Main extends Component {
             filteredUsers: []
         });
     }
+
+    openPublishDialog = () => {
+        this.setState({ 
+            writeDialogOpen: true
+        });
+    };
+    
+    closePublishDialog = () => {
+        this.setState({ 
+            writeDialogOpen: false 
+        });
+    };
 
     handleWritePost = (e) => {
         const {name, value} = e.target;
@@ -136,6 +149,8 @@ class Main extends Component {
             },
             publishButtonDisabled: true
         });
+
+        this.closePublishDialog();
     }
     
     render() { 
@@ -144,8 +159,8 @@ class Main extends Component {
                 <TopBar filteredUsers={this.state.filteredUsers} searchValue={this.state.searchText} onSearch={this.onSearch} onDeleteSearch={this.onDeleteSearch} />
                 <div className="pageBody">
                     <div className="mainBody">
-                        <Publisher publishPost={this.publishPost} handleWritePost={this.handleWritePost} titleText={this.state.writingPost.title} bodyText={this.state.writingPost.body} publishButtonDisabled={this.state.publishButtonDisabled}/>
-                        <Posts posts={this.state.posts}/>
+                        <Publisher publishPost={this.publishPost} handleWritePost={this.handleWritePost} titleText={this.state.writingPost.title} bodyText={this.state.writingPost.body} publishButtonDisabled={this.state.publishButtonDisabled} closePublishDialog={this.closePublishDialog} writeDialogOpen={this.state.writeDialogOpen}/>
+                        <Posts posts={this.state.posts} openPublishDialog={this.openPublishDialog}/>
                     </div>
                     <Trends />
                 </div>

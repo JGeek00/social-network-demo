@@ -135,25 +135,39 @@ body {
 
 }
 
-.pageBody {
+.react-responsive-modal-container {
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-top: 20px;
 
-    .mainBody {
-        width: 75%;
-        height: calc(100vh - 120px);
-        overflow: auto;
-        margin-right: 20px;
+    .react-responsive-modal-modal {
+        width: 70%;
+        max-width: unset;
+        border-radius: 5px;
+        padding: unset;
 
+        .react-responsive-modal-closeButton {
+            display: none;
+        }
+
+        .title {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+            span {
+                font-weight: bold;
+                font-size: 20px;
+            }
+        }
+    
         .textareaDiv {
             display: flex;
             flex-direction: column;
-            margin: 25px;
             margin-right: 10px;
             background-color: rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-
+            width: 100%;
+        
             .title {
                 background-color: rgba(0, 0, 0, 0.0);
                 padding: 20px;
@@ -163,15 +177,15 @@ body {
                 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
                 transition: 0.2s;
             }
-
+        
             .title:hover {
                 background-color: rgba(0, 0, 0, 0.05);
             }
-
+        
             .title:focus {
                 background-color: rgba(0, 0, 0, 0.1);
             }
-
+        
             .textareaPublisher {
                 background-color: rgba(0, 0, 0, 0.0);
                 padding: 20px;
@@ -186,7 +200,7 @@ body {
                 resize: none;
                 height: 100px;
             }
-    
+        
             .textareaPublisher:hover {
                 background-color: rgba(0, 0, 0, 0.05);
             }
@@ -194,23 +208,61 @@ body {
             .textareaPublisher:focus {
                 background-color: rgba(0, 0, 0, 0.1);
             }
-
+        
             .textareaPublisher::-webkit-scrollbar {
                 width: 8px;
                 background-color: rgba(0, 0, 0, 0.0);
             }
-
+        
             .textareaPublisher::-webkit-scrollbar-thumb {
                 width: 8px;
                 background-color: rgba(0, 0, 0, 0.3);
                 border-radius: 5px;
             }
-
-            .publishButtonDiv {
+        
+            .buttonsDiv {
                 width: 100%;
                 border-top: 1px solid rgba(0, 0, 0, 0.2);
 
-                button {
+                .closeButton {
+                    width: auto;
+                    float: left;
+                    bottom: 0;
+                    background-color: rgba(203, 68, 74);
+                    padding: 10px;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    margin: 10px;
+                    transition: 0.1s;
+                    cursor: pointer;
+                    outline: none;
+                    display: flex;
+                    align-items: center;
+                    height: 35px;
+        
+                    > i {
+                        margin-right: 10px;
+                        font-size: 20px;
+                    }
+                }
+
+                .closeButton:hover {
+                    background-color: rgb(202, 32, 41);
+                    border: none;
+                }
+        
+                .closeButton:active {
+                    box-shadow: 0px 0px 10px 1px rgba(203, 68, 74);
+                    border: none;
+                }
+        
+                .closeButton:focus {
+                    border: none;
+                }
+                
+        
+                .publishButton {
                     width: auto;
                     float: right;
                     bottom: 0;
@@ -223,32 +275,46 @@ body {
                     transition: 0.1s;
                     cursor: pointer;
                     outline: none;
-
+        
                     > i {
                         margin-right: 10px;
                     }
                 }
-
-                button:hover {
+        
+                .publishButton:hover {
                     background-color: #0f5fd8;
                     border: none;
                 }
-
-                button:active {
+        
+                .publishButton:active {
                     box-shadow: 0px 0px 10px 1px #0f5fd8;
                     border: none;
                 }
-
-                button:focus {
+        
+                .publishButton:focus {
                     border: none;
                 }
-
-                button:disabled {
+        
+                .publishButton:disabled {
                     background-color: #6c91c9;
                     box-shadow: none;
                 }
             }            
         }
+    }
+}
+
+
+.pageBody {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    .mainBody {
+        width: 75%;
+        height: calc(100vh - 120px);
+        overflow: auto;
+        margin-right: 20px;
 
         .posts {
             display: flex;
@@ -290,6 +356,11 @@ body {
                     font-family: "OpenSans", regular;
                 }
             }
+        }
+
+        .noPosts {
+            text-align: center;
+            margin-top: 50px;
         }
     }
 
