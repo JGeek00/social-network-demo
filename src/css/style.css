@@ -270,42 +270,81 @@ body {
   overflow: auto;
   margin-right: 20px;
 }
-.pageBody .mainBody .posts {
+.pageBody .mainBody .postsSection {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.pageBody .mainBody .postsSection .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 25px;
+}
+.pageBody .mainBody .postsSection .head .sectionTitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+.pageBody .mainBody .postsSection .head .publishDialogButton {
+  width: auto;
+  float: right;
+  bottom: 0;
+  background-color: #0d6efd;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  transition: 0.1s;
+  cursor: pointer;
+  outline: none;
+}
+.pageBody .mainBody .postsSection .head .publishDialogButton > i {
+  margin-right: 10px;
+}
+.pageBody .mainBody .postsSection .head .publishDialogButton:hover {
+  background-color: #0f5fd8;
+  border: none;
+}
+.pageBody .mainBody .postsSection .head .publishDialogButton:active {
+  box-shadow: 0px 0px 10px 1px #0f5fd8;
+  border: none;
+}
+.pageBody .mainBody .postsSection .postsList {
   display: flex;
   flex-direction: column;
   margin: 25px;
   margin-right: 10px;
 }
-.pageBody .mainBody .posts .post {
+.pageBody .mainBody .postsSection .postsList .post {
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
 }
-.pageBody .mainBody .posts .post .title {
+.pageBody .mainBody .postsSection .postsList .post .title {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: bold;
   font-size: 20px;
   padding-bottom: 15px;
 }
-.pageBody .mainBody .posts .post .title .datetime {
+.pageBody .mainBody .postsSection .postsList .post .title .datetime {
   float: right;
   font-weight: normal;
   font-size: 16px;
 }
-.pageBody .mainBody .posts .post .title .datetime i {
+.pageBody .mainBody .postsSection .postsList .post .title .datetime i {
   margin-right: 10px;
 }
-.pageBody .mainBody .posts .post .title .datetime .date {
+.pageBody .mainBody .postsSection .postsList .post .title .datetime .date {
   margin-right: 30px;
 }
-.pageBody .mainBody .posts .post .content {
+.pageBody .mainBody .postsSection .postsList .post .content {
   margin-top: 15px;
   text-align: justify;
   font-size: 16px;
   font-family: "OpenSans", regular;
 }
-.pageBody .mainBody .noPosts {
+.pageBody .mainBody .postsSection .noPosts {
   text-align: center;
   margin-top: 50px;
 }

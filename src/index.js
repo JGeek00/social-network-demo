@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Modal } from 'react-responsive-modal';
-
 import App from './App';
 
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
