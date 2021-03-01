@@ -20,6 +20,10 @@ body {
   font-family: "OpenSans", regular;
 }
 
+.Toastify__toast--success {
+  background-color: #28a745 !important;
+}
+
 .topBar {
   background-color: white;
   padding: 20px 20px;

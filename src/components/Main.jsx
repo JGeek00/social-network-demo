@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import TopBar from './TopBar';
 import Publisher from './Publisher';
 import Trends from './Trends';
@@ -179,11 +182,14 @@ class Main extends Component {
         });
 
         this.closePublishDialog();
+
+        toast.success("Post published successfully");
     }
     
     render() { 
         return (
             <div>
+                <ToastContainer />
                 <TopBar filteredUsers={this.state.filteredUsers} searchValue={this.state.searchText} onSearch={this.onSearch} onDeleteSearch={this.onDeleteSearch} />
                 <div className="pageBody">
                     <div className="mainBody">
