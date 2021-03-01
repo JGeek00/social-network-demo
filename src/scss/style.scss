@@ -147,7 +147,25 @@ body {
         padding: unset;
 
         .react-responsive-modal-closeButton {
-            display: none;
+            padding: 5px;
+            position: absolute;
+            top: 10px;
+        }
+
+        .react-responsive-modal-closeButton:hover {
+            padding: 5px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .react-responsive-modal-closeButton:active {
+            padding: 5px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .react-responsive-modal-closeButton:focus {
+            outline: none;
         }
 
         .title {
@@ -224,44 +242,6 @@ body {
                 width: 100%;
                 border-top: 1px solid rgba(0, 0, 0, 0.2);
 
-                .closeButton {
-                    width: auto;
-                    float: left;
-                    bottom: 0;
-                    background-color: rgba(203, 68, 74);
-                    padding: 10px;
-                    color: white;
-                    border: none;
-                    border-radius: 5px;
-                    margin: 10px;
-                    transition: 0.1s;
-                    cursor: pointer;
-                    outline: none;
-                    display: flex;
-                    align-items: center;
-                    height: 35px;
-        
-                    > i {
-                        margin-right: 5px;
-                        font-size: 20px;
-                    }
-                }
-
-                .closeButton:hover {
-                    background-color: rgb(202, 32, 41);
-                    border: none;
-                }
-        
-                .closeButton:active {
-                    box-shadow: 0px 0px 10px 1px rgba(203, 68, 74);
-                    border: none;
-                }
-        
-                .closeButton:focus {
-                    border: none;
-                }
-                
-        
                 .publishButton {
                     width: auto;
                     float: right;

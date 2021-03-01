@@ -12,10 +12,6 @@ const Publisher = ({publishPost, handleWritePost, titleText, bodyText, publishBu
                     <input type="text" className="title" name="title" onInput={handleWritePost} placeholder="Post title..." value={titleText} autoComplete="off"/>
                     <textarea className="textareaPublisher" name="body" placeholder="Write something..." onInput={handleWritePost} value={bodyText} autoComplete="off"></textarea>
                     <div className="buttonsDiv">
-                        <button onClick={closePublishDialog} className="closeButton">
-                            <i className="bi bi-x"></i>
-                            <span>Close</span>
-                        </button>
                         <button onClick={publishPost} className="publishButton" disabled={publishButtonDisabled}>
                             <i className="bi bi-chat-left-text"></i>
                             <span>Publish</span>

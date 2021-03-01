@@ -104,7 +104,11 @@ class Main extends Component {
     
     closePublishDialog = () => {
         this.setState({ 
-            writeDialogOpen: false 
+            writeDialogOpen: false ,
+            writingPost: {
+                title: '',
+                body: ''
+            }
         });
     };
 

@@ -128,7 +128,22 @@ body {
   padding: unset;
 }
 .react-responsive-modal-container .react-responsive-modal-modal .react-responsive-modal-closeButton {
-  display: none;
+  padding: 5px;
+  position: absolute;
+  top: 10px;
+}
+.react-responsive-modal-container .react-responsive-modal-modal .react-responsive-modal-closeButton:hover {
+  padding: 5px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.react-responsive-modal-container .react-responsive-modal-modal .react-responsive-modal-closeButton:active {
+  padding: 5px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.react-responsive-modal-container .react-responsive-modal-modal .react-responsive-modal-closeButton:focus {
+  outline: none;
 }
 .react-responsive-modal-container .react-responsive-modal-modal .title {
   background-color: rgba(0, 0, 0, 0.1);
@@ -193,38 +208,6 @@ body {
 .react-responsive-modal-container .react-responsive-modal-modal .textareaDiv .buttonsDiv {
   width: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
-}
-.react-responsive-modal-container .react-responsive-modal-modal .textareaDiv .buttonsDiv .closeButton {
-  width: auto;
-  float: left;
-  bottom: 0;
-  background-color: #cb444a;
-  padding: 10px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  margin: 10px;
-  transition: 0.1s;
-  cursor: pointer;
-  outline: none;
-  display: flex;
-  align-items: center;
-  height: 35px;
-}
-.react-responsive-modal-container .react-responsive-modal-modal .textareaDiv .buttonsDiv .closeButton > i {
-  margin-right: 5px;
-  font-size: 20px;
-}
-.react-responsive-modal-container .react-responsive-modal-modal .textareaDiv .buttonsDiv .closeButton:hover {
-  background-color: #ca2029;
-  border: none;
-}
-.react-responsive-modal-container .react-responsive-modal-modal .textareaDiv .buttonsDiv .closeButton:active {
-  box-shadow: 0px 0px 10px 1px #cb444a;
-  border: none;
-}
-.react-responsive-modal-container .react-responsive-modal-modal .textareaDiv .buttonsDiv .closeButton:focus {
-  border: none;
 }
 .react-responsive-modal-container .react-responsive-modal-modal .textareaDiv .buttonsDiv .publishButton {
   width: auto;
