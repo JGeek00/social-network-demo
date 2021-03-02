@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Posts = ({posts, openPublishDialog}) => {
+const Posts = ({posts, openPublishDialog, addLike}) => {
     return (
         <div className="postsSection">
             <div className="head">
@@ -22,6 +22,10 @@ const Posts = ({posts, openPublishDialog}) => {
                                     </div>
                                     <div className="content">
                                         <span>{post.content}</span>
+                                    </div>
+                                    <div className="bottomElements">
+                                        <button className="likes" onClick={addLike} postid={post.id}><i className={post.likes.liked === true ? "bi bi-suit-heart-fill filled" : "bi bi-suit-heart"}></i>{post.likes.numLikes}</button>
+                                        <button className="comments"><i className="bi bi-chat-left-dots"></i>{post.comments.length}</button>
                                     </div>
                                 </div>
                             ))

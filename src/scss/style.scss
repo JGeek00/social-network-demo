@@ -50,7 +50,7 @@ body {
 
     .search {
         position: absolute;
-        right: 10px;
+        right: 20px;
         width: 30%;
         display: flex;
         align-items: center;
@@ -393,6 +393,62 @@ body {
                         text-align: justify;
                         font-size: 16px;
                         font-family: "OpenSans", regular;
+                    }
+
+                    .bottomElements {
+                        margin-top: 20px;
+                        float: right;
+
+                        .likes {
+                            margin-right: 15px;
+                            padding: 5px 10px;
+                            cursor: pointer;
+                            border: none;
+                            background-color: unset;
+                            transition: 0.1s;
+
+                            .filled {
+                                color: #dc3545;
+                            }
+                        }
+
+                        .likes:hover {
+                            border-radius: 20px;
+                            background-color: rgba(0, 0, 0, 0.1);
+                        }
+
+                        .likes:active {
+                            background-color: rgba(0, 0, 0, 0.2);
+                        }
+
+                        .likes:focus {
+                            outline: none;
+                        }
+
+                        .comments {
+                            padding: 5px 13px;
+                            cursor: pointer;
+                            border: none;
+                            background-color: unset;
+                            transition: 0.1s;
+                        }
+
+                        .comments:hover {
+                            border-radius: 20px;
+                            background-color: rgba(0, 0, 0, 0.1);
+                        }
+
+                        .comments:active {
+                            background-color: rgba(0, 0, 0, 0.2);
+                        }
+                        
+                        .comments:focus {
+                            outline: none;
+                        }
+
+                        i {
+                            margin-right: 10px;
+                        }
                     }
                 }
             }

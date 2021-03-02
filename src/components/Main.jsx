@@ -168,7 +168,12 @@ class Main extends Component {
             id: newId,
             title: this.state.writingPost.title,
             content: this.state.writingPost.body,
-            datetime: datetime
+            datetime: datetime,
+            likes: {
+                liked: false,
+                numLikes: 0
+            },
+            comments: []
         }];
 
         this.setState({
@@ -185,6 +190,56 @@ class Main extends Component {
 
         toast.success("Post published successfully");
     }
+
+    addLike = (e) => {
+        var postId;
+        if (e.target.nodeName === 'I') {
+            postId = parseInt(e.target.parentNode.getAttribute('postid'));
+        }
+        else if (e.target.nodeName === 'BUTTON') {
+            postId = parseInt(e.target.getAttribute('postid'));
+        }
+        
+        const updatedPosts = this.state.posts.map(post => {
+            if (post.id === postId) {
+                if (post.likes.liked === false) {   // Post not liked yet
+                    return {
+                        id: post.id,
+                        title: post.title,
+                        content: post.content,
+                        datetime: post.datetime,
+                        likes: {
+                            liked: true,
+                            numLikes: ++(post.likes.numLikes)
+                        },
+                        comments: post.comments
+                    };
+                }
+                else if (post.likes.liked === true) {   // Post liked
+                    return {
+                        id: post.id,
+                        title: post.title,
+                        content: post.content,
+                        datetime: post.datetime,
+                        likes: {
+                            liked: false,
+                            numLikes: --(post.likes.numLikes)
+                        },
+                        comments: post.comments
+                    };
+                }
+                else {  // None of the above
+                    return post;
+                }
+            }
+            else {  // Not this post
+                return post;
+            }
+        });
+        this.setState({
+            posts: updatedPosts
+        });
+    }
     
     render() { 
         return (
@@ -194,7 +249,7 @@ class Main extends Component {
                 <div className="pageBody">
                     <div className="mainBody">
                         <Publisher publishPost={this.publishPost} handleWritePost={this.handleWritePost} titleText={this.state.writingPost.title} bodyText={this.state.writingPost.body} publishButtonDisabled={this.state.publishButtonDisabled} closePublishDialog={this.closePublishDialog} writeDialogOpen={this.state.writeDialogOpen}/>
-                        <Posts posts={this.state.posts} openPublishDialog={this.openPublishDialog}/>
+                        <Posts posts={this.state.posts} openPublishDialog={this.openPublishDialog} addLike={this.addLike}/>
                     </div>
                     <Trends trends={this.state.trends}/>
                 </div>

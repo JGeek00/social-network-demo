@@ -44,7 +44,7 @@ body {
 }
 .topBar .search {
   position: absolute;
-  right: 10px;
+  right: 20px;
   width: 30%;
   display: flex;
   align-items: center;
@@ -337,6 +337,51 @@ body {
   text-align: justify;
   font-size: 16px;
   font-family: "OpenSans", regular;
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements {
+  margin-top: 20px;
+  float: right;
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .likes {
+  margin-right: 15px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  background-color: unset;
+  transition: 0.1s;
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .likes .filled {
+  color: #dc3545;
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .likes:hover {
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .likes:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .likes:focus {
+  outline: none;
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .comments {
+  padding: 5px 13px;
+  cursor: pointer;
+  border: none;
+  background-color: unset;
+  transition: 0.1s;
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .comments:hover {
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .comments:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .comments:focus {
+  outline: none;
+}
+.pageBody .mainBody .postsSection .postsList .post .bottomElements i {
+  margin-right: 10px;
 }
 .pageBody .mainBody .postsSection .postsList::-webkit-scrollbar {
   width: 8px;
