@@ -77,7 +77,7 @@ class Main extends Component {
         // Comment post
         selectedPostToComment: '',
         commentBody: '',
-        commentButtonDisabled: false,
+        commentButtonDisabled: true,
         commentDialogOpen: false
     }
 
@@ -260,7 +260,7 @@ class Main extends Component {
         }
         else {
             this.setState({
-                publishButtonDisabled: true
+                commentButtonDisabled: true
             });
         }
 
@@ -286,7 +286,7 @@ class Main extends Component {
         else if (e.target.nodeName === 'BUTTON') {
             postId = parseInt(e.target.getAttribute('postid'));
         }
-       
+
         this.setState({
             selectedPostToComment: postId,
             commentDialogOpen: true
