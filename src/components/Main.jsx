@@ -72,7 +72,13 @@ class Main extends Component {
                 id: 5,
                 name: "Science"
             },
-        ]
+        ],
+
+        // Comment post
+        selectedPostToComment: '',
+        commentBody: '',
+        commentButtonDisabled: false,
+        commentDialogOpen: false
     }
 
     onSearch = (e) => {
@@ -173,7 +179,10 @@ class Main extends Component {
                 liked: false,
                 numLikes: 0
             },
-            comments: []
+            comments: {
+                commented: false,
+                allComments: []
+            }
         }];
 
         this.setState({
@@ -240,6 +249,98 @@ class Main extends Component {
             posts: updatedPosts
         });
     }
+
+    handleWriteComment = (e) => {
+        const {value} = e.target;
+
+        if (value !== '') {
+            this.setState({
+                commentButtonDisabled: false
+            });
+        }
+        else {
+            this.setState({
+                publishButtonDisabled: true
+            });
+        }
+
+        this.setState({
+            commentBody: value
+        });
+    }
+
+    closeCommentDialog = () => {
+        this.setState({
+            commentBody: '',
+            selectedPostToComment: '',
+            commentButtonDisabled: true,
+            commentDialogOpen: false
+        });
+    }
+
+    commentPost = (e) => {
+        var postId;
+        if (e.target.nodeName === 'I') {
+            postId = parseInt(e.target.parentNode.getAttribute('postid'));
+        }
+        else if (e.target.nodeName === 'BUTTON') {
+            postId = parseInt(e.target.getAttribute('postid'));
+        }
+       
+        this.setState({
+            selectedPostToComment: postId,
+            commentDialogOpen: true
+        });
+    }
+
+    publishComment = () => {
+        const newPosts = this.state.posts.map(post => {
+            if (post.id === this.state.selectedPostToComment) {
+                if (this.state.commentBody !== '') {     // Comment not empty
+                    const newComment = {
+                        content: this.state.commentBody
+                    }
+                    const newCommentsList = [...post.comments.allComments, newComment];
+
+                    return {
+                        id: post.id,
+                        title: post.title,
+                        content: post.content,
+                        datetime: post.datetime,
+                        likes: post.likes,
+                        comments: {
+                            commented: true,
+                            allComments: newCommentsList
+                        }
+                    }
+                }  
+                else {   // Comment empty
+                    const newCommentsList = post.comments.allComments.pop();
+
+                    return {
+                        id: post.id,
+                        title: post.title,
+                        content: post.content,
+                        datetime: post.datetime,
+                        likes: post.likes,
+                        comments: {
+                            commented: false,
+                            allComments: newCommentsList
+                        }
+                    }
+                }
+            }
+            else {  // Not this post
+                return post;
+            }
+        });
+
+        this.setState({
+            posts: newPosts
+        });
+
+        this.closeCommentDialog();
+    }
     
     render() { 
         return (
@@ -249,7 +350,7 @@ class Main extends Component {
                 <div className="pageBody">
                     <div className="mainBody">
                         <Publisher publishPost={this.publishPost} handleWritePost={this.handleWritePost} titleText={this.state.writingPost.title} bodyText={this.state.writingPost.body} publishButtonDisabled={this.state.publishButtonDisabled} closePublishDialog={this.closePublishDialog} writeDialogOpen={this.state.writeDialogOpen}/>
-                        <Posts posts={this.state.posts} openPublishDialog={this.openPublishDialog} addLike={this.addLike}/>
+                        <Posts posts={this.state.posts} openPublishDialog={this.openPublishDialog} addLike={this.addLike} selectedPostToComment={this.state.selectedPostToComment} commentBody={this.state.commentBody} commentButtonDisabled={this.state.commentButtonDisabled} commentDialogOpen={this.state.commentDialogOpen} handleWriteComment={this.handleWriteComment} closeCommentDialog={this.closeCommentDialog} commentPost={this.commentPost} publishComment={this.publishComment} />
                     </div>
                     <Trends trends={this.state.trends}/>
                 </div>

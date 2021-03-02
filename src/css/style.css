@@ -370,6 +370,9 @@ body {
   background-color: unset;
   transition: 0.1s;
 }
+.pageBody .mainBody .postsSection .postsList .post .bottomElements .comments .filled {
+  color: #0d6efd;
+}
 .pageBody .mainBody .postsSection .postsList .post .bottomElements .comments:hover {
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.1);

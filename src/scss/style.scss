@@ -431,6 +431,10 @@ body {
                             border: none;
                             background-color: unset;
                             transition: 0.1s;
+
+                            .filled {
+                                color: #0d6efd;
+                            }
                         }
 
                         .comments:hover {

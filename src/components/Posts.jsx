@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Posts = ({posts, openPublishDialog, addLike}) => {
+import Comment from './Comment';
+
+const Posts = ({posts, openPublishDialog, addLike, publishComment, handleWriteComment, commentBody, commentButtonDisabled, closeCommentDialog, commentDialogOpen, commentPost}) => {
     return (
         <div className="postsSection">
             <div className="head">
@@ -25,7 +27,7 @@ const Posts = ({posts, openPublishDialog, addLike}) => {
                                     </div>
                                     <div className="bottomElements">
                                         <button className="likes" onClick={addLike} postid={post.id}><i className={post.likes.liked === true ? "bi bi-suit-heart-fill filled" : "bi bi-suit-heart"}></i>{post.likes.numLikes}</button>
-                                        <button className="comments"><i className="bi bi-chat-left-dots"></i>{post.comments.length}</button>
+                                        <button className="comments" onClick={commentPost} postid={post.id}><i className={post.comments.commented === true ? "bi bi-chat-left-dots-fill filled" : "bi bi-chat-left-dots"}></i>{post.comments.allComments.length}</button>
                                     </div>
                                 </div>
                             ))
@@ -37,6 +39,7 @@ const Posts = ({posts, openPublishDialog, addLike}) => {
                     )
                 }
             </div>
+            <Comment publishComment={publishComment} handleWriteComment={handleWriteComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} closeCommentDialog={closeCommentDialog} commentDialogOpen={commentDialogOpen} />
         </div>
     );
 }
