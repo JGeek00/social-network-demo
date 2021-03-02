@@ -197,7 +197,14 @@ class Main extends Component {
 
         this.closePublishDialog();
 
-        toast.success("Post published successfully");
+        toast.success("Post published successfully", {
+            autoClose: 3000,
+            hideProgressBar: true,
+            draggable: true,
+            pauseOnHover: false,
+            closeOnClick: true,
+            closeButton: false
+        });
     }
 
     addLike = (e) => {
@@ -340,6 +347,15 @@ class Main extends Component {
         });
 
         this.closeCommentDialog();
+
+        toast.success("Comment published successfully", {
+            autoClose: 3000,
+            hideProgressBar: true,
+            draggable: true,
+            pauseOnHover: false,
+            closeOnClick: true,
+            closeButton: false
+        });
     }
     
     render() { 
