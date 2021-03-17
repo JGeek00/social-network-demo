@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,10 +9,33 @@ import Publisher from './Publisher';
 import Trends from './Trends';
 import Posts from './Posts';
 
-class Main extends Component {
-    state = {
-        // Users
-        users: [
+import {userActions} from '../actions/userActions';
+import {postActions} from '../actions/postActions';
+import {trendActions} from '../actions/trendActions';
+
+const Main = () => {
+    const dispatch = useDispatch();
+
+    const posts = useSelector(state => state.post);
+    const users = useSelector(state => state.user);
+    const trends = useSelector(state => state.trend);
+
+    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    const [writeDialogOpen, setWriteDialogOpen] = useState(false);
+    const [writingPost, setWritingPost] = useState({
+        title: '',
+        body: ''
+    });
+    const [lastId, setLastId] = useState(0);
+    const [publishButtonDisabled, setPublishButtonDisabled] = useState(true);
+    const [commentButtonDisabled, setCommentButtonDisabled] = useState(true);
+    const [commentBody, setCommentBody] = useState('');
+    const [selectedPostToComment, setSelectedPostToComment] = useState('');
+    const [commentDialogOpen, setCommentDialogOpen] = useState(false);
+
+    useEffect(() => {
+        dispatch(userActions.insertUsers([
             {
                 id: 1,
                 name: "Pepe",
@@ -36,22 +60,9 @@ class Main extends Component {
                 id: 6,
                 name: "Eva",
             },
-        ],
-        filteredUsers: [],
-        searchText: '',
+        ]));
 
-        // Posts
-        posts: [],
-        writeDialogOpen: false,
-        writingPost: {
-            title: '',
-            body: ''
-        },
-        lastId: 0,
-        publishButtonDisabled: true,
-
-        // Trends
-        trends: [
+        dispatch(trendActions.insertTrends([
             {
                 id: 1,
                 name: "Football"
@@ -71,109 +82,99 @@ class Main extends Component {
             {
                 id: 5,
                 name: "Science"
-            },
-        ],
+            }, 
+        ]));
 
-        // Comment post
-        selectedPostToComment: '',
-        commentBody: '',
-        commentButtonDisabled: true,
-        commentDialogOpen: false
-    }
+        dispatch(postActions.createPost([
+            ...posts,
+            {
+                id: 0,
+                title: 'Initial post',
+                content: 'This is the initial post',
+                datetime: new Date(),
+                likes: {
+                    liked: false,
+                    numLikes: 0
+                },
+                comments: {
+                    commented: false,
+                    allComments: []
+                }
+            }
+        ]));
+    }, []);
 
-    onSearch = (e) => {
+
+    const onSearch = (e) => {
         if (e.target.value === '') {
-            this.setState({
-                searchText: e.target.value,
-                filteredUsers: []
-            });
+            setSearchText('');
+            setFilteredUsers([]);
         }
         else {
-            const filtered = this.state.users.filter(user => user.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(e.target.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()));
-            
-            this.setState({
-                searchText: e.target.value,
-                filteredUsers: filtered
+            const filtered = users.filter(user => user.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(e.target.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()));
+
+            setSearchText(e.target.value);
+            setFilteredUsers(filtered)
+        }
+    }
+
+    const onDeleteSearch = () => {
+        setSearchText('');
+        setFilteredUsers([]);
+    }
+
+    const openPublishDialog = () => {
+        setWriteDialogOpen(true);
+    };
+    
+    const closePublishDialog = () => {
+        setWriteDialogOpen(false);
+        setWritingPost({
+            title: '',
+            body: ''
+        });
+    };
+
+    const handleWritePost = (e) => {
+        const {name, value} = e.target;
+        if (name === 'title') {
+            if (value !== '' && writingPost.body !== '') {
+                setPublishButtonDisabled(false);
+            }
+            else {
+                setPublishButtonDisabled(true);
+            }
+
+            setWritingPost({
+                title: value,
+                body: writingPost.body
+            });
+        }
+        else if (name === 'body') {
+            if (writingPost.title !== '' && value !== '') {
+                setPublishButtonDisabled(false);
+            }
+            else {
+                setPublishButtonDisabled(true);
+            }
+
+            setWritingPost({
+                title: writingPost.title,
+                body: value
             });
         }
     }
 
-    onDeleteSearch = () => {
-        this.setState({
-            searchText: '',
-            filteredUsers: []
-        });
-    }
-
-    openPublishDialog = () => {
-        this.setState({ 
-            writeDialogOpen: true
-        });
-    };
-    
-    closePublishDialog = () => {
-        this.setState({ 
-            writeDialogOpen: false ,
-            writingPost: {
-                title: '',
-                body: ''
-            }
-        });
-    };
-
-    handleWritePost = (e) => {
-        const {name, value} = e.target;
-        if (name === 'title') {
-            if (value !== '' && this.state.writingPost.body !== '') {
-                this.setState({
-                    publishButtonDisabled: false
-                });
-            }
-            else {
-                this.setState({
-                    publishButtonDisabled: true
-                });
-            }
-
-            this.setState({
-                writingPost: {
-                    title: value,
-                    body: this.state.writingPost.body
-                }
-            })
-        }
-        else if (name === 'body') {
-            if (this.state.writingPost.title !== '' && value !== '') {
-                this.setState({
-                    publishButtonDisabled: false
-                });
-            }
-            else {
-                this.setState({
-                    publishButtonDisabled: true
-                });
-            }
-
-            this.setState({
-                writingPost: {
-                    title: this.state.writingPost.title,
-                    body: value
-                }
-            })
-        }
-
-    }
-
-    publishPost = () => {
-        var newId = this.state.lastId;
+    const publishPost = () => {
+        var newId = lastId;
         newId++;
 
         const datetime = new Date();
 
-        const newPosts = [...this.state.posts, {
+        const newPosts = [...posts, {
             id: newId,
-            title: this.state.writingPost.title,
-            content: this.state.writingPost.body,
+            title: writingPost.title,
+            content: writingPost.body,
             datetime: datetime,
             likes: {
                 liked: false,
@@ -185,17 +186,16 @@ class Main extends Component {
             }
         }];
 
-        this.setState({
-            posts: newPosts,
-            lastId: newId,
-            writingPost: {
-                title: '',
-                body: ''
-            },
-            publishButtonDisabled: true
+        setLastId(newId);
+        setWritingPost({
+            title: '',
+            body: ''
         });
+        setPublishButtonDisabled(true);
+        
+        dispatch(postActions.createPost(newPosts));
 
-        this.closePublishDialog();
+        closePublishDialog();
 
         toast.success("Post published successfully", {
             autoClose: 3000,
@@ -207,7 +207,7 @@ class Main extends Component {
         });
     }
 
-    addLike = (e) => {
+    const addLike = (e) => {
         var postId;
         if (e.target.nodeName === 'I') {
             postId = parseInt(e.target.parentNode.getAttribute('postid'));
@@ -216,7 +216,7 @@ class Main extends Component {
             postId = parseInt(e.target.getAttribute('postid'));
         }
         
-        const updatedPosts = this.state.posts.map(post => {
+        const updatedPosts = posts.map(post => {
             if (post.id === postId) {
                 if (post.likes.liked === false) {   // Post not liked yet
                     return {
@@ -252,40 +252,31 @@ class Main extends Component {
                 return post;
             }
         });
-        this.setState({
-            posts: updatedPosts
-        });
+
+        dispatch(postActions.updatePosts(updatedPosts))
     }
 
-    handleWriteComment = (e) => {
+    const handleWriteComment = (e) => {
         const {value} = e.target;
 
         if (value !== '') {
-            this.setState({
-                commentButtonDisabled: false
-            });
+            setCommentButtonDisabled(false);
         }
         else {
-            this.setState({
-                commentButtonDisabled: true
-            });
+            setCommentButtonDisabled(true);
         }
 
-        this.setState({
-            commentBody: value
-        });
+        setCommentBody(value);
     }
 
-    closeCommentDialog = () => {
-        this.setState({
-            commentBody: '',
-            selectedPostToComment: '',
-            commentButtonDisabled: true,
-            commentDialogOpen: false
-        });
+    const closeCommentDialog = () => {
+        setCommentBody('');
+        setSelectedPostToComment('');
+        setCommentButtonDisabled(true);
+        setCommentDialogOpen(false);
     }
 
-    commentPost = (e) => {
+    const commentPost = (e) => {
         var postId;
         if (e.target.nodeName === 'I') {
             postId = parseInt(e.target.parentNode.getAttribute('postid'));
@@ -294,18 +285,16 @@ class Main extends Component {
             postId = parseInt(e.target.getAttribute('postid'));
         }
 
-        this.setState({
-            selectedPostToComment: postId,
-            commentDialogOpen: true
-        });
+        setSelectedPostToComment(postId);
+        setCommentDialogOpen(true);
     }
 
-    publishComment = () => {
-        const newPosts = this.state.posts.map(post => {
-            if (post.id === this.state.selectedPostToComment) {
-                if (this.state.commentBody !== '') {     // Comment not empty
+    const publishComment = () => {
+        const newPosts = posts.map(post => {
+            if (post.id === selectedPostToComment) {
+                if (commentBody !== '') {     // Comment not empty
                     const newComment = {
-                        content: this.state.commentBody
+                        content: commentBody
                     }
                     const newCommentsList = [...post.comments.allComments, newComment];
 
@@ -342,11 +331,9 @@ class Main extends Component {
             }
         });
 
-        this.setState({
-            posts: newPosts
-        });
+        dispatch(postActions.updatePosts(newPosts));
 
-        this.closeCommentDialog();
+        closeCommentDialog();
 
         toast.success("Comment published successfully", {
             autoClose: 3000,
@@ -358,21 +345,21 @@ class Main extends Component {
         });
     }
     
-    render() { 
-        return (
-            <div>
-                <ToastContainer />
-                <TopBar filteredUsers={this.state.filteredUsers} searchValue={this.state.searchText} onSearch={this.onSearch} onDeleteSearch={this.onDeleteSearch} />
-                <div className="pageBody">
-                    <div className="mainBody">
-                        <Publisher publishPost={this.publishPost} handleWritePost={this.handleWritePost} titleText={this.state.writingPost.title} bodyText={this.state.writingPost.body} publishButtonDisabled={this.state.publishButtonDisabled} closePublishDialog={this.closePublishDialog} writeDialogOpen={this.state.writeDialogOpen}/>
-                        <Posts posts={this.state.posts} openPublishDialog={this.openPublishDialog} addLike={this.addLike} selectedPostToComment={this.state.selectedPostToComment} commentBody={this.state.commentBody} commentButtonDisabled={this.state.commentButtonDisabled} commentDialogOpen={this.state.commentDialogOpen} handleWriteComment={this.handleWriteComment} closeCommentDialog={this.closeCommentDialog} commentPost={this.commentPost} publishComment={this.publishComment} />
-                    </div>
-                    <Trends trends={this.state.trends}/>
+
+    return (
+        <div>
+            <ToastContainer />
+            <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch} />
+            <div className="pageBody">
+                <div className="mainBody">
+                    <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
+                    <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} />
                 </div>
+                <Trends trends={trends}/>
             </div>
-        );
-    }
+        </div>
+    );
+
 }
  
 export default Main;
