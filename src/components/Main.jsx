@@ -20,8 +20,11 @@ const Main = () => {
     const users = useSelector(state => state.user);
     const trends = useSelector(state => state.trend);
 
+    // Users
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [searchText, setSearchText] = useState('');
+
+    // Post writing dialog
     const [writeDialogOpen, setWriteDialogOpen] = useState(false);
     const [writingPost, setWritingPost] = useState({
         title: '',
@@ -29,10 +32,16 @@ const Main = () => {
     });
     const [lastId, setLastId] = useState(0);
     const [publishButtonDisabled, setPublishButtonDisabled] = useState(true);
+
+    // Comment
     const [commentButtonDisabled, setCommentButtonDisabled] = useState(true);
     const [commentBody, setCommentBody] = useState('');
     const [selectedPostToComment, setSelectedPostToComment] = useState('');
     const [commentDialogOpen, setCommentDialogOpen] = useState(false);
+
+    // Post modal
+    const [postModalOpen, setPostModalOpen] = useState(false);
+    const [postInModal, setPostInModal] = useState('');
 
     useEffect(() => {
         dispatch(userActions.insertUsers([
@@ -344,6 +353,16 @@ const Main = () => {
             closeButton: false
         });
     }
+
+    const openPostModal = (post) => {
+        setPostInModal(post);
+        setPostModalOpen(true);
+    }
+
+    const closePostModal = () => {
+        setPostModalOpen(false);
+        setPostInModal('');
+    }
     
 
     return (
@@ -353,7 +372,7 @@ const Main = () => {
             <div className="pageBody">
                 <div className="mainBody">
                     <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
-                    <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} />
+                    <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} openPostModal={openPostModal} closePostModal={closePostModal} postModalOpen={postModalOpen} postInModal={postInModal} />
                 </div>
                 <Trends trends={trends}/>
             </div>

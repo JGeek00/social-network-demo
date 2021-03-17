@@ -440,4 +440,102 @@ body {
   border-radius: 5px;
 }
 
+.postModal {
+  width: 100%;
+}
+.postModal .topBar {
+  height: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: none;
+}
+.postModal > .content {
+  padding: 0px 20px 20px 20px;
+}
+.postModal > .content .post {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+.postModal > .content .post .postTitleDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.postModal > .content .post .postTitleDiv span.postTitle {
+  font-weight: bold;
+  font-size: 20px;
+}
+.postModal > .content .post .postTitleDiv .datetime {
+  font-weight: normal;
+  font-size: 16px;
+}
+.postModal > .content .post .postTitleDiv .datetime .date {
+  margin-right: 30px;
+}
+.postModal > .content .post .postTitleDiv .datetime .date i {
+  margin-right: 10px;
+}
+.postModal > .content .post .postTitleDiv .datetime .time i {
+  margin-right: 10px;
+}
+.postModal > .content .post .postBody {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+.postModal > .content .commentsDiv {
+  margin-top: 40px;
+}
+.postModal > .content .commentsDiv > .commentTitle {
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+.postModal > .content .commentsDiv > .comments {
+  max-height: 60vh;
+  overflow: auto;
+  border-radius: 5px;
+}
+.postModal > .content .commentsDiv > .comments .comment {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.postModal > .content .commentsDiv > .comments .comment .numComment {
+  width: min-content;
+  padding-right: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+.postModal > .content .commentsDiv > .comments .comment .commentBody {
+  width: 100%;
+  text-align: justify;
+}
+.postModal > .content .commentsDiv > .comments::-webkit-scrollbar {
+  background-color: white;
+  width: 5px;
+}
+.postModal > .content .commentsDiv > .comments::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 5px;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+.postModal > .content .commentsDiv > .comments::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.postModal > .content .commentsDiv > .comments::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 /*# sourceMappingURL=style.css.map */

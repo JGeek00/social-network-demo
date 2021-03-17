@@ -523,3 +523,122 @@ body {
         }
     }
 }
+
+.postModal {
+   width: 100%;
+
+    .topBar {
+        height: 20px;
+        font-weight: bold;
+        font-size: 20px;
+        box-shadow: none;
+    }
+
+    > .content {
+        padding: 0px 20px 20px 20px;
+
+        .post {
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+
+            .postTitleDiv {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+
+                span.postTitle {
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+
+                .datetime {
+                    font-weight: normal;
+                    font-size: 16px;
+
+                    .date {
+                        margin-right: 30px;
+
+                        i {
+                            margin-right: 10px;
+                        }
+                    }
+
+                    .time i {
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            .postBody {
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(0, 0, 0, 0.2);
+
+            }
+        }
+
+        .commentsDiv {
+            margin-top: 40px;
+            
+            > .commentTitle {
+                font-weight: bold;
+                font-size: 20px;
+                padding-bottom: 20px;
+            }
+
+            > .comments {
+                max-height: 60vh;
+                overflow: auto;
+                border-radius: 5px;
+                
+                .comment {
+                    padding: 20px;
+                    border-radius: 5px;
+                    background-color: rgba(0, 0, 0, 0.1);
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 20px;
+                     
+                    .numComment {
+                        width: min-content;
+                        padding-right: 40px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-weight: bold;
+                        font-size: 18px;
+                    }
+                     
+                    .commentBody {
+                        width: 100%;
+                        text-align: justify;
+                    }
+                }
+            }
+
+            > .comments::-webkit-scrollbar {
+                background-color: white;
+                width: 5px;
+            } 
+            
+            > .comments::-webkit-scrollbar-thumb {
+                background-color: rgba(0, 0, 0, 0.3);
+                width: 5px;
+                border-radius: 20px;
+                transition: 0.2s;
+            }
+            
+            > .comments::-webkit-scrollbar-thumb:hover {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+            
+            > .comments::-webkit-scrollbar-thumb:active {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+}
