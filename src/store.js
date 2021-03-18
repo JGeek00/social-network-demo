@@ -4,11 +4,13 @@ import thunkMiddleware from 'redux-thunk';
 import {post} from './reducers/postsReducer';
 import {user} from './reducers/usersReducer';
 import {trend} from './reducers/trendsReducer';
+import {login} from './reducers/loginReducer';
 
 const reducers = combineReducers({
     post,
     user,
-    trend
+    trend,
+    login
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;    //React devtools

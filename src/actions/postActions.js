@@ -1,5 +1,4 @@
 const createPost = (posts) => {
-    console.log('dispatch posts', posts)
     return dispatch => {
         dispatch({
             type: 'CREATE_POST',

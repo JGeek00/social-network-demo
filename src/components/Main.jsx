@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
+import { Redirect } from 'react-router';
+
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import TopBar from './TopBar';
 import Publisher from './Publisher';
@@ -19,6 +20,7 @@ const Main = () => {
     const posts = useSelector(state => state.post);
     const users = useSelector(state => state.user);
     const trends = useSelector(state => state.trend);
+    const loginInfo = useSelector(state => state.login);
 
     // Users
     const [filteredUsers, setFilteredUsers] = useState([]);
@@ -43,76 +45,38 @@ const Main = () => {
     const [postModalOpen, setPostModalOpen] = useState(false);
     const [postInModal, setPostInModal] = useState('');
 
+    // Login
+    const [loginStatus, setLoginStatus] = useState(null);
+
     useEffect(() => {
-        dispatch(userActions.insertUsers([
-            {
-                id: 1,
-                name: "Pepe",
-            },
-            {
-                id: 2,
-                name: "Jose",
-            },
-            {
-                id: 3,
-                name: "Luis",
-            },
-            {
-                id: 4,
-                name: "Alba",
-            },
-            {
-                id: 5,
-                name: "Lucía",
-            },
-            {
-                id: 6,
-                name: "Eva",
-            },
-        ]));
-
-        dispatch(trendActions.insertTrends([
-            {
-                id: 1,
-                name: "Football"
-            },
-            {
-                id: 2,
-                name: "Computers"
-            },
-            {
-                id: 3,
-                name: "Politics"
-            },
-            {
-                id: 4,
-                name: "Music"
-            },
-            {
-                id: 5,
-                name: "Science"
-            }, 
-        ]));
-
-        dispatch(postActions.createPost([
-            ...posts,
-            {
-                id: 0,
-                title: 'Initial post',
-                content: 'This is the initial post',
-                datetime: new Date(),
-                likes: {
-                    liked: false,
-                    numLikes: 0
-                },
-                comments: {
-                    commented: false,
-                    allComments: []
-                }
-            }
-        ]));
+        checkLogin();
     }, []);
 
+    const checkLogin = () => {
+        if (loginInfo.username !== undefined && loginInfo.password !== undefined) {
+            const found =  users.find(user => user.username === loginInfo.username && user.password === loginInfo.password);
+            if (found) {
+                setLoginStatus(true);
+            }
+        }
+        else {
+            const loginData = localStorage.getItem('login');
+            if (loginData) {
+                const parsed = JSON.parse(loginData);
+    
+                const found =  users.find(user => user.username === parsed.username && user.password === parsed.password);
+                if (found) {
+                    setLoginStatus(true);
+                }
+                else {
+                    setLoginStatus(false);
+                }
+            }
+            else {
+                setLoginStatus(false);
+            }
+        }
+    }
 
     const onSearch = (e) => {
         if (e.target.value === '') {
@@ -366,19 +330,30 @@ const Main = () => {
     
 
     return (
-        <div>
-            <ToastContainer />
-            <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch} />
-            <div className="pageBody">
-                <div className="mainBody">
-                    <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
-                    <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} openPostModal={openPostModal} closePostModal={closePostModal} postModalOpen={postModalOpen} postInModal={postInModal} />
-                </div>
-                <Trends trends={trends}/>
-            </div>
-        </div>
+        <React.Fragment>
+            {
+                loginStatus !== null ? (
+                    loginStatus === true ? (
+                        <div>
+                            <ToastContainer />
+                            <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch} />
+                            <div className="pageBody">
+                                <div className="mainBody">
+                                    <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
+                                    <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} openPostModal={openPostModal} closePostModal={closePostModal} postModalOpen={postModalOpen} postInModal={postInModal} />
+                                </div>
+                                <Trends trends={trends}/>
+                            </div>
+                        </div>
+                    ) : (
+                        <Redirect to="/login" />
+                    )
+                ) : (
+                    <span>Loading...</span>
+                )
+            }
+        </React.Fragment>
     );
-
 }
  
 export default Main;
