@@ -10,9 +10,8 @@ import Publisher from './Publisher';
 import Trends from './Trends';
 import Posts from './Posts';
 
-import {userActions} from '../actions/userActions';
 import {postActions} from '../actions/postActions';
-import {trendActions} from '../actions/trendActions';
+import {loginActions} from '../actions/loginActions';
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -47,6 +46,10 @@ const Main = () => {
 
     // Login
     const [loginStatus, setLoginStatus] = useState(null);
+
+    // Logout
+    const [logoutModalStatus, setLogoutModalStatus] = useState(false);
+
 
     useEffect(() => {
         checkLogin();
@@ -327,7 +330,19 @@ const Main = () => {
         setPostModalOpen(false);
         setPostInModal('');
     }
+
+    const logout = () => {
+        dispatch(loginActions.logout());
+        setLoginStatus(false);
+    }
+
+    const openLogoutModal = () => {
+        setLogoutModalStatus(true);
+    }
     
+    const closeLogoutModal = () => {
+        setLogoutModalStatus(false);
+    }
 
     return (
         <React.Fragment>
@@ -336,7 +351,7 @@ const Main = () => {
                     loginStatus === true ? (
                         <div>
                             <ToastContainer />
-                            <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch} />
+                            <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch}  loggedUser={loginInfo.username} logoutModalStatus={logoutModalStatus} openLogoutModal={openLogoutModal} closeLogoutModal={closeLogoutModal} logout={logout} />
                             <div className="pageBody">
                                 <div className="mainBody">
                                     <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>

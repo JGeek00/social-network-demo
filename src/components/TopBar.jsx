@@ -1,6 +1,7 @@
 import React from 'react';
+import Modal from 'react-responsive-modal';
 
-const TopBar = ({filteredUsers, searchValue, onSearch, onDeleteSearch}) => {
+const TopBar = ({filteredUsers, searchValue, onSearch, onDeleteSearch, loggedUser, logoutModalStatus, openLogoutModal, closeLogoutModal, logout}) => {
     return (
         <div className="topBar">
             <div className="webIcon">
@@ -35,6 +36,23 @@ const TopBar = ({filteredUsers, searchValue, onSearch, onDeleteSearch}) => {
                         </div>
                     )
                 }
+            </div>
+            <div className="logoutDiv">
+                <button className="logoutBtn" onClick={openLogoutModal}>
+                    <i class="bi bi-person-fill"></i>
+                    {loggedUser}
+                </button>
+            </div>
+            <div className="logoutModal">
+                <Modal open={logoutModalStatus} onClose={closeLogoutModal}>
+                    <div className="logoutContent"> 
+                        <span>You are going to close your session.</span>
+                        <div className="buttons">
+                            <button className="cancelLogout" onClick={closeLogoutModal}>Cancel</button>
+                            <button className="confirmLogout" onClick={logout}>Confirm</button>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         </div>
     );

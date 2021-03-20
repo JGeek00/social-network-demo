@@ -134,8 +134,8 @@ body {
 }
 .topBar .search {
   position: absolute;
-  right: 20px;
-  width: 30%;
+  right: 130px;
+  width: 25%;
   display: flex;
   align-items: center;
 }
@@ -207,6 +207,33 @@ body {
   background-color: rgba(0, 0, 0, 0.1);
 }
 .topBar .search .resultsBox .result:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.topBar .logoutDiv {
+  position: absolute;
+  right: 20px;
+}
+.topBar .logoutDiv .logoutBtn {
+  padding: 8px 20px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.topBar .logoutDiv .logoutBtn > i {
+  font-size: 18px;
+  margin-right: 10px;
+}
+.topBar .logoutDiv .logoutBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.topBar .logoutDiv .logoutBtn:active {
   background-color: rgba(0, 0, 0, 0.2);
 }
 

@@ -157,8 +157,8 @@ body {
 
     .search {
         position: absolute;
-        right: 20px;
-        width: 30%;
+        right: 130px;
+        width: 25%;
         display: flex;
         align-items: center;
 
@@ -245,6 +245,37 @@ body {
         }
     }
 
+    .logoutDiv {
+        position: absolute;
+        right: 20px;
+
+        .logoutBtn {
+            padding: 8px 20px;
+            border-radius: 5px;
+            outline: none;
+            color: black;
+            border: none;
+            background-color: transparent;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            > i {
+                font-size: 18px;
+                margin-right: 10px;
+            }
+        }
+
+        .logoutBtn:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .logoutBtn:active {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
 }
 
 .react-responsive-modal-container {

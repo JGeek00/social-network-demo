@@ -10,6 +10,16 @@ const signIn = (loginInfo) => {
     }
 }
 
+const logout = () => {
+    return dispatch => {
+        dispatch({
+            type: 'LOGOUT',
+            login: {}
+        });
+    }
+}
+
 export const loginActions = {
-    signIn
+    signIn,
+    logout
 }
