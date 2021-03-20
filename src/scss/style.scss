@@ -261,6 +261,7 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: 0.1s;
             
             > i {
                 font-size: 18px;
@@ -275,6 +276,99 @@ body {
         .logoutBtn:active {
             background-color: rgba(0, 0, 0, 0.2);
         }
+    }  
+}
+
+.logoutModal {
+    width: fit-content !important;
+
+    .logoutContent {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        > span {
+            margin: 40px 80px;
+            margin-bottom: 60px;
+            font-size: 20px;
+
+            > i {
+                margin-right: 20px;
+                font-size: 24px;
+            }
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+
+            .confirmLogout {
+                padding: 10px 10px;
+                font-size: 16px;
+                background-color: #198754;
+                border-radius: 5px;
+                outline: none;
+                border: none;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: calc(50% - 5px);
+                margin-left: 10px;
+                cursor: pointer;
+                transition: 0.1s;
+
+                > i {
+                    margin-right: 10px;
+                    font-size: 22px;
+                }
+            }
+
+            .confirmLogout:hover {
+                background-color: #13613c;
+            }
+
+            .confirmLogout:active {
+                box-shadow: 0px 0px 10px 1px #13613c;
+            }
+
+            .cancelLogout {
+                padding: 10px 10px;
+                font-size: 16px;
+                background-color: #dc3545;
+                border-radius: 5px;
+                outline: none;
+                border: none;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: calc(50% - 5px);
+                margin-right: 10px;
+                cursor: pointer;
+                transition: 0.1s;
+
+                > i {
+                    margin-right: 10px;
+                    font-size: 18px;
+                }
+            }
+
+            .cancelLogout:hover {
+                background-color: #b12a37;
+            }
+
+            .cancelLogout:active {
+                box-shadow: 0px 0px 10px 1px #b12a37;
+            }
+        }
+    }
+
+    > .react-responsive-modal-closeButton {
+        display: none;
     }
 }
 
