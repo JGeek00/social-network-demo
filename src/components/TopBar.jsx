@@ -37,20 +37,14 @@ const TopBar = ({filteredUsers, searchValue, onSearch, onDeleteSearch, loggedUse
                     )
                 }
             </div>
-            <div className="logoutDiv">
-                <button className="logoutBtn" onClick={openLogoutModal}>
-                    <i className="bi bi-person-fill"></i>
-                    {loggedUser}
-                </button>
-            </div>
-                <Modal classNames={{modal: 'logoutModal'}} open={logoutModalStatus} onClose={closeLogoutModal}>
-                    <div className="logoutContent"> 
-                        <span><i className="bi bi-info-circle"></i>You are going to close your session.</span>
-                        <div className="buttons">
-                            <button className="cancelLogout" onClick={closeLogoutModal}><i className="bi bi-x-circle"></i>Cancel</button>
-                            <button className="confirmLogout" onClick={logout}><i className="bi bi-check"></i>Confirm</button>
-                        </div>
+            <Modal classNames={{modal: 'logoutModal'}} open={logoutModalStatus} onClose={closeLogoutModal}>
+                <div className="logoutContent"> 
+                    <span><i className="bi bi-info-circle"></i>You are going to close your session.</span>
+                    <div className="buttons">
+                        <button className="cancelLogout" onClick={closeLogoutModal}><i className="bi bi-x-circle"></i>Cancel</button>
+                        <button className="confirmLogout" onClick={logout}><i className="bi bi-check"></i>Confirm</button>
                     </div>
+                </div>
             </Modal>
         </div>
     );

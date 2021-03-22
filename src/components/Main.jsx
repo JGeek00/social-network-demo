@@ -9,6 +9,7 @@ import TopBar from './TopBar';
 import Publisher from './Publisher';
 import Trends from './Trends';
 import Posts from './Posts';
+import SideMenu from './SideMenu';
 
 import {postActions} from '../actions/postActions';
 import {loginActions} from '../actions/loginActions';
@@ -20,6 +21,10 @@ const Main = () => {
     const users = useSelector(state => state.user);
     const trends = useSelector(state => state.trend);
     const loginInfo = useSelector(state => state.login);
+
+
+    // Pages
+    const [selectedPage, setSelectedPage] = useState('home');
 
     // Users
     const [filteredUsers, setFilteredUsers] = useState([]);
@@ -46,6 +51,9 @@ const Main = () => {
 
     // Login
     const [loginStatus, setLoginStatus] = useState(null);
+
+    // Options menu
+    const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
 
     // Logout
     const [logoutModalStatus, setLogoutModalStatus] = useState(false);
@@ -338,10 +346,15 @@ const Main = () => {
 
     const openLogoutModal = () => {
         setLogoutModalStatus(true);
+        setOptionsMenuOpen(!optionsMenuOpen);
     }
     
     const closeLogoutModal = () => {
         setLogoutModalStatus(false);
+    }
+
+    const openOptionsMenu = () => {
+        setOptionsMenuOpen(!optionsMenuOpen);
     }
 
     return (
@@ -349,15 +362,18 @@ const Main = () => {
             {
                 loginStatus !== null ? (
                     loginStatus === true ? (
-                        <div>
+                        <div className="mainAppContainer">
                             <ToastContainer />
-                            <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch}  loggedUser={loginInfo.username} logoutModalStatus={logoutModalStatus} openLogoutModal={openLogoutModal} closeLogoutModal={closeLogoutModal} logout={logout} />
-                            <div className="pageBody">
-                                <div className="mainBody">
-                                    <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
-                                    <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} openPostModal={openPostModal} closePostModal={closePostModal} postModalOpen={postModalOpen} postInModal={postInModal} />
+                            <SideMenu optionsMenuOpen={optionsMenuOpen} openOptionsMenu={openOptionsMenu} openLogoutModal={openLogoutModal} selectedPage={selectedPage} name={loginInfo.name} />
+                            <div className="mainAppContent">
+                                <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch}  loggedUser={loginInfo.username} logoutModalStatus={logoutModalStatus} openLogoutModal={openLogoutModal} closeLogoutModal={closeLogoutModal} logout={logout} />
+                                <div className="pageBody">
+                                    <div className="mainBody">
+                                        <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
+                                        <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} openPostModal={openPostModal} closePostModal={closePostModal} postModalOpen={postModalOpen} postInModal={postInModal} />
+                                    </div>
+                                    <Trends trends={trends}/>
                                 </div>
-                                <Trends trends={trends}/>
                             </div>
                         </div>
                     ) : (

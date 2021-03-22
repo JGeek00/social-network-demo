@@ -28,7 +28,8 @@ function App() {
             if (found) {
                 dispatch(loginActions.signIn({
                     username: parsed.username,
-                    password: parsed.password
+                    password: parsed.password,
+                    name: parsed.name
                 }));
                 <Redirect to="/" />
             }

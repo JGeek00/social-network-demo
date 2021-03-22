@@ -67,7 +67,8 @@ const Login = () => {
         if (found) {
             dispatch(loginActions.signIn({
                 username: userField,
-                password: passwordField
+                password: passwordField,
+                name: found.name
             }));
             setLoginStatus(true);
         
