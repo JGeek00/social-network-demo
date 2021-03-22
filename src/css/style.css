@@ -124,14 +124,15 @@ body {
   padding: 10px;
   padding-left: 5px;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
 }
 .mainAppContainer .sideMenu .optionsMenuBase {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 100;
 }
 .mainAppContainer .sideMenu .profile {
   width: 100%;
@@ -172,7 +173,7 @@ body {
 .mainAppContainer .sideMenu .profile .optionsDiv .optionsMenu {
   border-radius: 5px;
   background-color: white;
-  z-index: 10;
+  z-index: 150;
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -240,10 +241,21 @@ body {
   color: #0f5fd8;
   font-weight: bold;
 }
+.mainAppContainer .sideMenuBase {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  display: none;
+  transition: 0.5s;
+}
 .mainAppContainer .mainAppContent {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 80px);
+  width: 100%;
 }
 .mainAppContainer .mainAppContent .topBar {
   background-color: white;
@@ -255,9 +267,31 @@ body {
   box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.1);
   margin-right: 5px;
   margin-left: 15px;
+  height: 27px;
 }
-.mainAppContainer .mainAppContent .topBar .webIcon i {
-  font-size: 25px;
+.mainAppContainer .mainAppContent .topBar .sideMenuBtn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 26px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transition: 0.1s;
+  cursor: pointer;
+}
+.mainAppContainer .mainAppContent .topBar .sideMenuBtn i {
+  position: relative;
+  top: 2px;
+}
+.mainAppContainer .mainAppContent .topBar .sideMenuBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.mainAppContainer .mainAppContent .topBar .sideMenuBtn:active {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .mainAppContainer .mainAppContent .topBar .appTitle {
   margin-left: 25px;
@@ -533,6 +567,9 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 5px;
 }
+.mainAppContainer .mainAppContent.sideMenuOpen {
+  width: 100%;
+}
 
 .logoutModal {
   width: fit-content !important;
@@ -743,11 +780,14 @@ body {
 .postModal {
   width: 100%;
 }
-.postModal .topBar {
-  height: 20px;
+.postModal > .topBar {
+  height: 60px;
   font-weight: bold;
   font-size: 20px;
   box-shadow: none;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
 }
 .postModal > .content {
   padding: 0px 20px 20px 20px;
@@ -836,6 +876,108 @@ body {
 }
 .postModal > .content .commentsDiv > .comments::-webkit-scrollbar-thumb:active {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 1300px) {
+  .mainAppContainer .sideMenu {
+    width: auto;
+  }
+  .mainAppContainer .sideMenu .profile {
+    background-color: transparent;
+    position: unset;
+  }
+  .mainAppContainer .sideMenu .profile .userInfo {
+    margin-top: unset;
+    margin-bottom: unset;
+  }
+  .mainAppContainer .sideMenu .profile .userInfo span {
+    display: none;
+  }
+  .mainAppContainer .sideMenu .profile .optionsDiv {
+    top: unset;
+    bottom: 5px;
+    left: 40px;
+  }
+  .mainAppContainer .sideMenu .profile .optionsDiv .optionsBtn {
+    float: unset;
+    transform: rotate(90deg);
+    font-size: 20px;
+  }
+  .mainAppContainer .sideMenu .profile .optionsDiv .optionsMenu {
+    top: unset;
+    bottom: 50px;
+  }
+  .mainAppContainer .sideMenu .sideMenuOption {
+    text-align: center;
+  }
+  .mainAppContainer .sideMenu .sideMenuOption span {
+    display: none;
+  }
+  .mainAppContainer .sideMenu .sideMenuOption i {
+    margin-right: unset;
+  }
+}
+@media (max-width: 1000px) {
+  .mainAppContainer .sideMenu {
+    width: 200px;
+    height: calc(100% - 20px);
+    padding-left: 10px;
+  }
+  .mainAppContainer .sideMenu .profile {
+    background-color: rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  .mainAppContainer .sideMenu .profile .userInfo {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .mainAppContainer .sideMenu .profile .userInfo span {
+    display: unset;
+  }
+  .mainAppContainer .sideMenu .profile .optionsDiv {
+    bottom: unset;
+    left: unset;
+  }
+  .mainAppContainer .sideMenu .profile .optionsDiv .optionsBtn {
+    float: right;
+    transform: unset;
+    font-size: 18px;
+  }
+  .mainAppContainer .sideMenu .profile .optionsDiv .optionsMenu {
+    bottom: unset;
+    top: 40px;
+  }
+  .mainAppContainer .sideMenu .sideMenuOption {
+    text-align: unset;
+  }
+  .mainAppContainer .sideMenu .sideMenuOption span {
+    display: unset;
+  }
+  .mainAppContainer .sideMenu .sideMenuOption i {
+    margin-right: 15px;
+  }
+  .mainAppContainer .sideMenuBase.sideMenuOpen {
+    display: block;
+  }
+  .mainAppContainer .sideMenu.sideMenuCollapsable {
+    z-index: 75;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .mainAppContainer .sideMenu.sideMenuClosed {
+    position: absolute;
+    left: -300px;
+  }
+  .mainAppContainer .topBar.sideMenuClosed {
+    width: 100%;
+  }
+  .mainAppContainer .mainAppContent .topBar .sideMenuBtn {
+    display: flex;
+  }
+  .mainAppContainer .mainAppContent .topBar {
+    margin-left: 5px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

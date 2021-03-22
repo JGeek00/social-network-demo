@@ -1,12 +1,10 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
 
-const TopBar = ({filteredUsers, searchValue, onSearch, onDeleteSearch, loggedUser, logoutModalStatus, openLogoutModal, closeLogoutModal, logout}) => {
+const TopBar = ({filteredUsers, searchValue, onSearch, onDeleteSearch, loggedUser, logoutModalStatus, openLogoutModal, closeLogoutModal, logout, handleMenuOpen}) => {
     return (
         <div className="topBar">
-            <div className="webIcon">
-                <i className="bi bi-person-circle"></i>
-            </div>
+            <button className="sideMenuBtn" onClick={handleMenuOpen}><i class="bi bi-list"></i></button>
             <span className="appTitle">Social network demo</span>
             <div className="search">
                 <i className="bi bi-search"></i>

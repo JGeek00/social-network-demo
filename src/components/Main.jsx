@@ -52,6 +52,9 @@ const Main = () => {
     // Login
     const [loginStatus, setLoginStatus] = useState(null);
 
+    // Side menu
+    const [sideMenuOpen, setSideMenuOpen] = useState(false)
+
     // Options menu
     const [optionsMenuOpen, setOptionsMenuOpen] = useState(false);
 
@@ -357,6 +360,11 @@ const Main = () => {
         setOptionsMenuOpen(!optionsMenuOpen);
     }
 
+    const handleMenuOpen = () => {
+        setSideMenuOpen(!sideMenuOpen);
+    }
+
+
     return (
         <React.Fragment>
             {
@@ -364,9 +372,9 @@ const Main = () => {
                     loginStatus === true ? (
                         <div className="mainAppContainer">
                             <ToastContainer />
-                            <SideMenu optionsMenuOpen={optionsMenuOpen} openOptionsMenu={openOptionsMenu} openLogoutModal={openLogoutModal} selectedPage={selectedPage} name={loginInfo.name} />
-                            <div className="mainAppContent">
-                                <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch}  loggedUser={loginInfo.username} logoutModalStatus={logoutModalStatus} openLogoutModal={openLogoutModal} closeLogoutModal={closeLogoutModal} logout={logout} />
+                            <SideMenu optionsMenuOpen={optionsMenuOpen} openOptionsMenu={openOptionsMenu} openLogoutModal={openLogoutModal} selectedPage={selectedPage} name={loginInfo.name} sideMenuOpen={sideMenuOpen} handleMenuOpen={handleMenuOpen} />
+                            <div className={sideMenuOpen === true ? "mainAppContent" : "mainAppContent sideMenuClosed"}>
+                                <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch}  loggedUser={loginInfo.username} logoutModalStatus={logoutModalStatus} openLogoutModal={openLogoutModal} closeLogoutModal={closeLogoutModal} logout={logout} sideMenuOpen={sideMenuOpen} handleMenuOpen={handleMenuOpen} />
                                 <div className="pageBody">
                                     <div className="mainBody">
                                         <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
