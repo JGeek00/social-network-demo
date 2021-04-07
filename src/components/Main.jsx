@@ -64,6 +64,10 @@ const Main = () => {
 
     useEffect(() => {
         checkLogin();
+
+        if (posts.length === 0) {
+            dispatch(postActions.fetchPosts())
+        }
     }, []);
 
     const checkLogin = () => {
