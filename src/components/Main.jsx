@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import axios from 'axios';
+
+import config from '../config.json';
 
 import { Redirect } from 'react-router';
 
@@ -156,17 +159,10 @@ const Main = () => {
         }
     }
 
-    const publishPost = () => {
-        var newId = lastId;
-        newId++;
-
-        const datetime = new Date();
-
-        const newPosts = [...posts, {
-            id: newId,
+    const publishPost = async () => {
+        const newPost = {
             title: writingPost.title,
             content: writingPost.body,
-            datetime: datetime,
             likes: {
                 liked: false,
                 numLikes: 0
@@ -175,27 +171,52 @@ const Main = () => {
                 commented: false,
                 allComments: []
             }
-        }];
-
-        setLastId(newId);
+        }
+        
         setWritingPost({
             title: '',
             body: ''
         });
         setPublishButtonDisabled(true);
         
-        dispatch(postActions.createPost(newPosts));
-
         closePublishDialog();
 
-        toast.success("Post published successfully", {
-            autoClose: 3000,
-            hideProgressBar: true,
-            draggable: true,
-            pauseOnHover: false,
-            closeOnClick: true,
-            closeButton: false
-        });
+        const post = await axios.post(`${config.apiUrl}/posts`, newPost);
+
+        if (post.status === 200 && post.data) {
+            const formattedObj = {
+                ...post.data,
+                datetime: new Date(post.data.createdAt),
+                likes: {
+                    liked: false,
+                    numLikes: 0
+                },
+                comments: {
+                    commented: false,
+                    allComments: []
+                }
+            }
+            const newPosts = [...posts, formattedObj];
+            dispatch(postActions.createPost(newPosts));
+            toast.success("Post published successfully", {
+                autoClose: 3000,
+                hideProgressBar: true,
+                draggable: true,
+                pauseOnHover: false,
+                closeOnClick: true,
+                closeButton: false
+            });
+        }
+        else {
+            toast.error("An error occured when publishing the post", {
+                autoClose: 3000,
+                hideProgressBar: true,
+                draggable: true,
+                pauseOnHover: false,
+                closeOnClick: true,
+                closeButton: false
+            });
+        }
     }
 
     const addLike = (e) => {

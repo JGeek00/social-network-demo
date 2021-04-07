@@ -24,7 +24,15 @@ const fetchPosts = () => {
     const formatDate = (post) => {
         return {
             ...post,
-            datetime: new Date(post.createdAt)
+            datetime: new Date(post.createdAt),
+            likes: {
+                liked: false,
+                numLikes: 0
+            },
+            comments: {
+                commented: false,
+                allComments: []
+            }
         }
     }
     return dispatch => {
