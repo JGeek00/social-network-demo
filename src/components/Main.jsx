@@ -79,6 +79,7 @@ const Main = ({history}) => {
             }
             else if (response.status === 401) {
                 dispatch(loginActions.logout());
+                localStorage.removeItem('jwt');
                 history.replace('/login');
             }
             else if (response.status === 500) {
@@ -225,47 +226,10 @@ const Main = ({history}) => {
             dispatch(postActions.updatePost(response.data));
         }
         else {
-
+            dispatch(loginActions.logout());
+            localStorage.removeItem('jwt');
+            history.replace('/login');
         }
-        
-        // const updatedPosts = posts.map(post => {
-        //     if (post.id === postId) {
-        //         if (post.likes.liked === false) {   // Post not liked yet
-        //             return {
-        //                 id: post.id,
-        //                 title: post.title,
-        //                 content: post.content,
-        //                 datetime: post.datetime,
-        //                 likes: {
-        //                     liked: true,
-        //                     numLikes: ++(post.likes.numLikes)
-        //                 },
-        //                 comments: post.comments
-        //             };
-        //         }
-        //         else if (post.likes.liked === true) {   // Post liked
-        //             return {
-        //                 id: post.id,
-        //                 title: post.title,
-        //                 content: post.content,
-        //                 datetime: post.datetime,
-        //                 likes: {
-        //                     liked: false,
-        //                     numLikes: --(post.likes.numLikes)
-        //                 },
-        //                 comments: post.comments
-        //             };
-        //         }
-        //         else {  // None of the above
-        //             return post;
-        //         }
-        //     }
-        //     else {  // Not this post
-        //         return post;
-        //     }
-        // });
-
-        // dispatch(postActions.updatePosts(updatedPosts))
     }
 
     const handleWriteComment = (e) => {
