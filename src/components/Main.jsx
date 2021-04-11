@@ -6,7 +6,7 @@ import config from '../config.json';
 
 import { ToastContainer, toast } from 'react-toastify';
 
-import {fetchPosts} from '../services/posts';
+import {fetchPosts, likePost} from '../services/posts';
 
 import TopBar from './TopBar';
 import Publisher from './Publisher';
@@ -211,53 +211,61 @@ const Main = ({history}) => {
         }
     }
 
-    const addLike = (e) => {
+    const addLike = async (e) => {
         var postId;
         if (e.target.nodeName === 'I') {
-            postId = parseInt(e.target.parentNode.getAttribute('postid'));
+            postId = e.target.parentNode.getAttribute('postid');
         }
         else if (e.target.nodeName === 'BUTTON') {
-            postId = parseInt(e.target.getAttribute('postid'));
+            postId = e.target.getAttribute('postid');
+        }
+
+        const response = await likePost(postId, loginInfo._id);
+        if (response.status === 200) {
+            dispatch(postActions.updatePost(response.data));
+        }
+        else {
+
         }
         
-        const updatedPosts = posts.map(post => {
-            if (post.id === postId) {
-                if (post.likes.liked === false) {   // Post not liked yet
-                    return {
-                        id: post.id,
-                        title: post.title,
-                        content: post.content,
-                        datetime: post.datetime,
-                        likes: {
-                            liked: true,
-                            numLikes: ++(post.likes.numLikes)
-                        },
-                        comments: post.comments
-                    };
-                }
-                else if (post.likes.liked === true) {   // Post liked
-                    return {
-                        id: post.id,
-                        title: post.title,
-                        content: post.content,
-                        datetime: post.datetime,
-                        likes: {
-                            liked: false,
-                            numLikes: --(post.likes.numLikes)
-                        },
-                        comments: post.comments
-                    };
-                }
-                else {  // None of the above
-                    return post;
-                }
-            }
-            else {  // Not this post
-                return post;
-            }
-        });
+        // const updatedPosts = posts.map(post => {
+        //     if (post.id === postId) {
+        //         if (post.likes.liked === false) {   // Post not liked yet
+        //             return {
+        //                 id: post.id,
+        //                 title: post.title,
+        //                 content: post.content,
+        //                 datetime: post.datetime,
+        //                 likes: {
+        //                     liked: true,
+        //                     numLikes: ++(post.likes.numLikes)
+        //                 },
+        //                 comments: post.comments
+        //             };
+        //         }
+        //         else if (post.likes.liked === true) {   // Post liked
+        //             return {
+        //                 id: post.id,
+        //                 title: post.title,
+        //                 content: post.content,
+        //                 datetime: post.datetime,
+        //                 likes: {
+        //                     liked: false,
+        //                     numLikes: --(post.likes.numLikes)
+        //                 },
+        //                 comments: post.comments
+        //             };
+        //         }
+        //         else {  // None of the above
+        //             return post;
+        //         }
+        //     }
+        //     else {  // Not this post
+        //         return post;
+        //     }
+        // });
 
-        dispatch(postActions.updatePosts(updatedPosts))
+        // dispatch(postActions.updatePosts(updatedPosts))
     }
 
     const handleWriteComment = (e) => {
@@ -396,7 +404,7 @@ const Main = ({history}) => {
                             <div className="pageBody">
                                 <div className="mainBody">
                                     <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
-                                    <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} openPostModal={openPostModal} closePostModal={closePostModal} postModalOpen={postModalOpen} postInModal={postInModal} />
+                                    <Posts userId={loginInfo._id} posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} openPostModal={openPostModal} closePostModal={closePostModal} postModalOpen={postModalOpen} postInModal={postInModal} />
                                 </div>
                                 <Trends trends={trends}/>
                             </div>

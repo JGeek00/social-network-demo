@@ -4,7 +4,8 @@ const signIn = (loginInfo) => {
             type: 'LOGIN',
             login: {
                 username: loginInfo.username,
-                name: loginInfo.name
+                name: loginInfo.name,
+                _id: loginInfo._id
             }
         });
     }

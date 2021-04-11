@@ -15,3 +15,15 @@ export const fetchPosts = async () => {
     });
     return response;
 }
+
+export const likePost = async (postId, userId) => {
+    const response = await axios.post(`${config.apiUrl}/likepost`, {
+        postId: postId,
+        idUserLiked: userId
+    }, {
+        headers: {
+            'x-access-token': localStorage.getItem('jwt')
+        },
+    });
+    return response;
+}

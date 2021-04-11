@@ -29,7 +29,8 @@ function App() {
                 if (response.status === 200) {
                     dispatch(loginActions.signIn({
                         username: response.data.username,
-                        name: response.data.name
+                        name: response.data.name,
+                        _id: response.data._id
                     }));
                 }
             }

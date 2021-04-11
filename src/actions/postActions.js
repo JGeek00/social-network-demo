@@ -2,6 +2,21 @@ import axios from 'axios';
 
 import config from '../config.json';
 
+const formatDate = (post) => {
+    return {
+        ...post,
+        datetime: new Date(post.createdAt),
+        likes: {
+            liked: false,
+            numLikes: 0
+        },
+        comments: {
+            commented: false,
+            allComments: []
+        }
+    }
+}
+
 const createPost = (posts) => {
     return dispatch => {
         dispatch({
@@ -21,20 +36,6 @@ const updatePosts = (posts) => {
 }
 
 const setPosts = (posts) => {
-    const formatDate = (post) => {
-        return {
-            ...post,
-            datetime: new Date(post.createdAt),
-            likes: {
-                liked: false,
-                numLikes: 0
-            },
-            comments: {
-                commented: false,
-                allComments: []
-            }
-        }
-    }
     return dispatch => {
         const toSave = posts.map(post => formatDate(post));
         dispatch({
@@ -44,8 +45,19 @@ const setPosts = (posts) => {
     }
 }
 
+const updatePost = (post) => {
+    return dispatch => {
+        const toSave = formatDate(post);
+        dispatch({
+            type: 'UPDATE_POST',
+            posts: toSave
+        });
+    }
+}
+
 export const postActions = {
     createPost,
     updatePosts,
-    setPosts
+    setPosts,
+    updatePost
 }

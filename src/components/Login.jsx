@@ -61,7 +61,8 @@ const Login = () => {
             localStorage.setItem('jwt', response.data.token);
             dispatch(loginActions.signIn({
                 username: response.data.userData.username,
-                name: response.data.userData.name
+                name: response.data.userData.name,
+                _id: response.data.userData._id
             }));
             setLoginStatus(true);
         } catch (error) {

@@ -22,7 +22,19 @@ export const post = (state = defaultState, action) => {
         case 'CREATE_POST':
         case 'UPDATE_POSTS':
         case 'SET_POSTS':
-            return action.posts
+            return action.posts;
+        case 'UPDATE_POST':
+            const updated = state.map(post => {
+                if (`${post._id}` === `${action.posts._id}`) {
+                    console.log(action.posts)
+                    return action.posts;
+                }
+                else {
+                    return post;
+                }
+            });
+            console.log(updated)
+            return updated;
     
         default:
             return state;
