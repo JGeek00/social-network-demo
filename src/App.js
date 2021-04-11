@@ -4,34 +4,34 @@ import { Redirect, Route, Switch } from 'react-router';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import {checkLogin} from './services/auth';
+
 import Main from './components/Main.jsx';
 import Login from './components/Login';
+import TrendsPage from './components/TrendsPage';
 
 import {loginActions} from './actions/loginActions';
 
 
 function App() {
     const dispatch = useDispatch();
-
-    const allUsers = useSelector(state => state.user);
+    
+    const loginInfo = useSelector(state => state.login);
 
     useEffect(() => {
-        checkLogin();
+        login();
     }, []);
-   
-    const checkLogin = () => {
-        const loginData = localStorage.getItem('login');
-        if (loginData) {
-            const parsed = JSON.parse(loginData);
-        
-            const found =  allUsers.find(user => user.username === parsed.username && user.password === parsed.password);
-            if (found) {
-                dispatch(loginActions.signIn({
-                    username: parsed.username,
-                    password: parsed.password,
-                    name: parsed.name
-                }));
-                <Redirect to="/" />
+
+    const login = async () => {
+        if (!loginInfo) {
+            if (localStorage.getItem('jwt')) {
+                const response = await checkLogin();
+                if (response.status === 200) {
+                    dispatch(loginActions.signIn({
+                        username: response.data.username,
+                        name: response.data.name
+                    }));
+                }
             }
         }
     }
@@ -39,6 +39,9 @@ function App() {
     return (
         <React.Fragment>
             <Switch>
+                <Route path="/trends" render={
+					props => <TrendsPage {...props} />
+				} />
                 <Route path="/login" render={
 					props => <Login {...props} />
 				} />

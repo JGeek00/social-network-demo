@@ -1,0 +1,17 @@
+import axios from 'axios';
+import config from '../config.json';
+
+export const fetchPosts = async () => {
+    // const response = await fetch(`${config.apiUrl}/posts`, {
+    //     method: 'GET',
+    //     headers: {
+    //         'x-access-token': localStorage.getItem('jwt')
+    //     },
+    // });
+    const response = await axios.get(`${config.apiUrl}/posts`, {
+        headers: {
+            'x-access-token': localStorage.getItem('jwt')
+        }
+    });
+    return response;
+}

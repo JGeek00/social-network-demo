@@ -4,9 +4,9 @@ import axios from 'axios';
 
 import config from '../config.json';
 
-import { Redirect } from 'react-router';
-
 import { ToastContainer, toast } from 'react-toastify';
+
+import {fetchPosts} from '../services/posts';
 
 import TopBar from './TopBar';
 import Publisher from './Publisher';
@@ -17,7 +17,7 @@ import SideMenu from './SideMenu';
 import {postActions} from '../actions/postActions';
 import {loginActions} from '../actions/loginActions';
 
-const Main = () => {
+const Main = ({history}) => {
     const dispatch = useDispatch();
 
     const posts = useSelector(state => state.post);
@@ -66,36 +66,28 @@ const Main = () => {
 
 
     useEffect(() => {
-        checkLogin();
-
         if (posts.length === 0) {
-            dispatch(postActions.fetchPosts())
+            getPosts();
         }
     }, []);
 
-    const checkLogin = () => {
-        if (loginInfo.username !== undefined && loginInfo.password !== undefined) {
-            const found =  users.find(user => user.username === loginInfo.username && user.password === loginInfo.password);
-            if (found) {
-                setLoginStatus(true);
+    const getPosts = async () => {
+        if (localStorage.getItem('jwt')) {
+            const response = await fetchPosts();
+            if (response.status === 200) {
+                dispatch(postActions.setPosts(response.data));
+            }
+            else if (response.status === 401) {
+                dispatch(loginActions.logout());
+                history.replace('/login');
+            }
+            else if (response.status === 500) {
+     
             }
         }
         else {
-            const loginData = localStorage.getItem('login');
-            if (loginData) {
-                const parsed = JSON.parse(loginData);
-    
-                const found =  users.find(user => user.username === parsed.username && user.password === parsed.password);
-                if (found) {
-                    setLoginStatus(true);
-                }
-                else {
-                    setLoginStatus(false);
-                }
-            }
-            else {
-                setLoginStatus(false);
-            }
+            dispatch(loginActions.logout());
+            history.replace('/login');
         }
     }
 
@@ -370,6 +362,8 @@ const Main = () => {
     const logout = () => {
         dispatch(loginActions.logout());
         setLoginStatus(false);
+        localStorage.removeItem('jwt');
+        history.replace('/login');
     }
 
     const openLogoutModal = () => {
@@ -393,27 +387,23 @@ const Main = () => {
     return (
         <React.Fragment>
             {
-                loginStatus !== null ? (
-                    loginStatus === true ? (
-                        <div className="mainAppContainer">
-                            <ToastContainer />
-                            <SideMenu optionsMenuOpen={optionsMenuOpen} openOptionsMenu={openOptionsMenu} openLogoutModal={openLogoutModal} selectedPage={selectedPage} name={loginInfo.name} sideMenuOpen={sideMenuOpen} handleMenuOpen={handleMenuOpen} />
-                            <div className={sideMenuOpen === true ? "mainAppContent" : "mainAppContent sideMenuClosed"}>
-                                <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch}  loggedUser={loginInfo.username} logoutModalStatus={logoutModalStatus} openLogoutModal={openLogoutModal} closeLogoutModal={closeLogoutModal} logout={logout} sideMenuOpen={sideMenuOpen} handleMenuOpen={handleMenuOpen} />
-                                <div className="pageBody">
-                                    <div className="mainBody">
-                                        <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
-                                        <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} openPostModal={openPostModal} closePostModal={closePostModal} postModalOpen={postModalOpen} postInModal={postInModal} />
-                                    </div>
-                                    <Trends trends={trends}/>
+                loginInfo ? (
+                    <div className="mainAppContainer">
+                        <ToastContainer />
+                        <SideMenu optionsMenuOpen={optionsMenuOpen} openOptionsMenu={openOptionsMenu} openLogoutModal={openLogoutModal} selectedPage={selectedPage} name={loginInfo.name} sideMenuOpen={sideMenuOpen} handleMenuOpen={handleMenuOpen} />
+                        <div className={sideMenuOpen === true ? "mainAppContent" : "mainAppContent sideMenuClosed"}>
+                            <TopBar filteredUsers={filteredUsers} searchValue={searchText} onSearch={onSearch} onDeleteSearch={onDeleteSearch}  loggedUser={loginInfo.username} logoutModalStatus={logoutModalStatus} openLogoutModal={openLogoutModal} closeLogoutModal={closeLogoutModal} logout={logout} sideMenuOpen={sideMenuOpen} handleMenuOpen={handleMenuOpen} />
+                            <div className="pageBody">
+                                <div className="mainBody">
+                                    <Publisher publishPost={publishPost} handleWritePost={handleWritePost} titleText={writingPost.title} bodyText={writingPost.body} publishButtonDisabled={publishButtonDisabled} closePublishDialog={closePublishDialog} writeDialogOpen={writeDialogOpen}/>
+                                    <Posts posts={posts} openPublishDialog={openPublishDialog} addLike={addLike} selectedPostToComment={selectedPostToComment} commentBody={commentBody} commentButtonDisabled={commentButtonDisabled} commentDialogOpen={commentDialogOpen} handleWriteComment={handleWriteComment} closeCommentDialog={closeCommentDialog} commentPost={commentPost} publishComment={publishComment} openPostModal={openPostModal} closePostModal={closePostModal} postModalOpen={postModalOpen} postInModal={postInModal} />
                                 </div>
+                                <Trends trends={trends}/>
                             </div>
                         </div>
-                    ) : (
-                        <Redirect to="/login" />
-                    )
+                    </div>
                 ) : (
-                    <span>Loading...</span>
+                   <React.Fragment />
                 )
             }
         </React.Fragment>

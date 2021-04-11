@@ -20,7 +20,7 @@ const updatePosts = (posts) => {
     }
 }
 
-const fetchPosts = () => {
+const setPosts = (posts) => {
     const formatDate = (post) => {
         return {
             ...post,
@@ -36,12 +36,10 @@ const fetchPosts = () => {
         }
     }
     return dispatch => {
-        axios.get(`${config.apiUrl}/posts`).then(response => {
-            const toSave = response.data.map(post => formatDate(post));
-            dispatch({
-                type: 'SET_POSTS',
-                posts: toSave
-            });
+        const toSave = posts.map(post => formatDate(post));
+        dispatch({
+            type: 'SET_POSTS',
+            posts: toSave
         });
     }
 }
@@ -49,5 +47,5 @@ const fetchPosts = () => {
 export const postActions = {
     createPost,
     updatePosts,
-    fetchPosts
+    setPosts
 }

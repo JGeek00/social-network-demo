@@ -4,6 +4,8 @@ import { Redirect } from 'react-router';
 
 import { ToastContainer, toast } from 'react-toastify';
 
+import {checkLogin, login} from '../services/auth';
+
 import {loginActions} from '../actions/loginActions';
 
 const Login = () => {
@@ -18,7 +20,7 @@ const Login = () => {
     const [loginStatus, setLoginStatus] = useState(false);
 
     useEffect(() => {
-        checkLogin();
+        check();
     }, []);
 
     const changeLoginFields = (e) => {
@@ -36,24 +38,15 @@ const Login = () => {
         }
     }
 
-    const checkLogin = () => {
-        if (loginInfo.username !== undefined && loginInfo.password !== undefined) {
-            const found =  allUsers.find(user => user.username === loginInfo.username && user.password === loginInfo.password);
-            if (found) {
-                setLoginStatus(true);
-            }
+    const check = async () => {
+        if (loginInfo) {
+            setLoginStatus(true);
         }
         else {
-            const loginData = localStorage.getItem('login');
-            if (loginData) {
-                const parsed = JSON.parse(loginData);
-    
-                const found =  allUsers.find(user => user.username === parsed.username && user.password === parsed.password);
-                if (found) {
+            if (localStorage.getItem('jwt')) {
+                const result = await checkLogin();
+                if (result.status === 200) {
                     setLoginStatus(true);
-                }
-                else {
-                    setLoginStatus(false);
                 }
             }
             else {
@@ -62,21 +55,16 @@ const Login = () => {
         }
     }
 
-    const signIn = () => {
-        const found =  allUsers.find(user => user.username === userField && user.password === passwordField);
-        if (found) {
+    const signIn = async () => {
+        try {
+            const response = await login(userField, passwordField);
+            localStorage.setItem('jwt', response.data.token);
             dispatch(loginActions.signIn({
-                username: userField,
-                password: passwordField,
-                name: found.name
+                username: response.data.userData.username,
+                name: response.data.userData.name
             }));
             setLoginStatus(true);
-        
-            if (keepLogged === true) {
-                localStorage.setItem('login', `{"username": "${userField}", "password": "${passwordField}"}`);
-            }
-        }
-        else {
+        } catch (error) {
             toast.error("Username or password incorrect. Try again.", {
                 autoClose: 3000,
                 hideProgressBar: true,

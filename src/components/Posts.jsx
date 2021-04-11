@@ -15,7 +15,7 @@ const Posts = ({posts, openPublishDialog, addLike, publishComment, handleWriteCo
                     posts.length > 0 ? (
                         (
                             posts.map(post => (
-                                <div className="post" key={`post-${post.id}`} onClick={() => openPostModal(post)}>
+                                <div className="post" key={`post-${post._id}`} onClick={() => openPostModal(post)}>
                                     <div className="title">
                                         <span>{post.title}</span>
                                         <div className="datetime">
@@ -27,7 +27,7 @@ const Posts = ({posts, openPublishDialog, addLike, publishComment, handleWriteCo
                                         <span>{post.content}</span>
                                     </div>
                                     <div className="bottomElements" onClick={(e) => e.stopPropagation()}>
-                                        <button className="likes" onClick={addLike} postid={post.id}><i className={post.likes.liked === true ? "bi bi-suit-heart-fill filled" : "bi bi-suit-heart"}></i>{post.likes.numLikes}</button>
+                                        <button className="likes" onClick={addLike} postid={post._id}><i className={post.likes.liked === true ? "bi bi-suit-heart-fill filled" : "bi bi-suit-heart"}></i>{post.likes.numLikes}</button>
                                         <button className="comments" onClick={commentPost} postid={post.id}><i className={post.comments.commented === true ? "bi bi-chat-left-dots-fill filled" : "bi bi-chat-left-dots"}></i>{post.comments.allComments.length}</button>
                                     </div>
                                 </div>
