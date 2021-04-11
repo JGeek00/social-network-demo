@@ -441,7 +441,7 @@ body {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
-  margin-right: 0px;
+  margin-right: 5px;
 }
 .mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .title {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);

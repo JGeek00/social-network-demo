@@ -27,3 +27,16 @@ export const likePost = async (postId, userId) => {
     });
     return response;
 }
+
+export const publishPostDb = async (post) => {
+    const response = await axios.post(`${config.apiUrl}/posts`, {
+        title: post.title,
+        content: post.content,
+        author: post.author
+    }, {
+        headers: {
+            'x-access-token': localStorage.getItem('jwt')
+        },
+    });
+    return response;
+}

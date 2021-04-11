@@ -17,11 +17,12 @@ const formatDate = (post) => {
     }
 }
 
-const createPost = (posts) => {
+const createPost = (post) => {
+    const postFormatted = formatDate(post);
     return dispatch => {
         dispatch({
             type: 'CREATE_POST',
-            posts
+            post: postFormatted
         });
     }
 }

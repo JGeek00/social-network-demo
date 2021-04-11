@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import axios from 'axios';
-
-import config from '../config.json';
 
 import { ToastContainer, toast } from 'react-toastify';
 
-import {fetchPosts, likePost} from '../services/posts';
+import {fetchPosts, likePost, publishPostDb} from '../services/posts';
 
 import TopBar from './TopBar';
 import Publisher from './Publisher';
@@ -16,6 +13,7 @@ import SideMenu from './SideMenu';
 
 import {postActions} from '../actions/postActions';
 import {loginActions} from '../actions/loginActions';
+
 
 const Main = ({history}) => {
     const dispatch = useDispatch();
@@ -156,14 +154,7 @@ const Main = ({history}) => {
         const newPost = {
             title: writingPost.title,
             content: writingPost.body,
-            likes: {
-                liked: false,
-                numLikes: 0
-            },
-            comments: {
-                commented: false,
-                allComments: []
-            }
+            author: loginInfo._id
         }
         
         setWritingPost({
@@ -174,23 +165,9 @@ const Main = ({history}) => {
         
         closePublishDialog();
 
-        const post = await axios.post(`${config.apiUrl}/posts`, newPost);
-
-        if (post.status === 200 && post.data) {
-            const formattedObj = {
-                ...post.data,
-                datetime: new Date(post.data.createdAt),
-                likes: {
-                    liked: false,
-                    numLikes: 0
-                },
-                comments: {
-                    commented: false,
-                    allComments: []
-                }
-            }
-            const newPosts = [...posts, formattedObj];
-            dispatch(postActions.createPost(newPosts));
+        const response = await publishPostDb(newPost);
+        if (response.status === 200 && response.data) {
+            dispatch(postActions.createPost(response.data));
             toast.success("Post published successfully", {
                 autoClose: 3000,
                 hideProgressBar: true,
