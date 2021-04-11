@@ -557,7 +557,36 @@ body {
         
                             .bottomElements {
                                 margin-top: 20px;
-                                float: right;
+                                width: 100%;
+
+                                .author {
+                                    float: left;
+                                    padding: 5px 10px;
+                                    border: none;
+                                    background-color: unset;
+                                    outline: none;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    font-size: 16px;
+                                    cursor: pointer;
+                                    transition: 0.1s;
+
+                                    img {
+                                        width: 20px;
+                                        height: 100%;
+                                        margin-right: 10px;
+                                    }
+                                }
+
+                                .author:hover {
+                                    border-radius: 20px;
+                                    background-color: rgba(0, 0, 0, 0.1);
+                                }
+        
+                                .author:active {
+                                    background-color: rgba(0, 0, 0, 0.2);
+                                }
         
                                 .likes {
                                     margin-right: 15px;
@@ -566,6 +595,7 @@ body {
                                     border: none;
                                     background-color: unset;
                                     transition: 0.1s;
+                                    float: right;
         
                                     .filled {
                                         color: #dc3545;
@@ -591,6 +621,7 @@ body {
                                     border: none;
                                     background-color: unset;
                                     transition: 0.1s;
+                                    float: right;
         
                                     .filled {
                                         color: #0d6efd;

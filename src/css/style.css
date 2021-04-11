@@ -468,7 +468,32 @@ body {
 }
 .mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements {
   margin-top: 20px;
-  float: right;
+  width: 100%;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .author {
+  float: left;
+  padding: 5px 10px;
+  border: none;
+  background-color: unset;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .author img {
+  width: 20px;
+  height: 100%;
+  margin-right: 10px;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .author:hover {
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .author:active {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .likes {
   margin-right: 15px;
@@ -477,6 +502,7 @@ body {
   border: none;
   background-color: unset;
   transition: 0.1s;
+  float: right;
 }
 .mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .likes .filled {
   color: #dc3545;
@@ -497,6 +523,7 @@ body {
   border: none;
   background-color: unset;
   transition: 0.1s;
+  float: right;
 }
 .mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .comments .filled {
   color: #0d6efd;

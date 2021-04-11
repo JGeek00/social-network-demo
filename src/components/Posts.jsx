@@ -3,6 +3,8 @@ import React from 'react';
 import Comment from './Comment';
 import PostModal from './PostModal';
 
+import profilePic from '../assets/profile.png';
+
 const Posts = ({userId, posts, openPublishDialog, addLike, publishComment, handleWriteComment, commentBody, commentButtonDisabled, closeCommentDialog, commentDialogOpen, commentPost, openPostModal, closePostModal, postModalOpen, postInModal}) => {
     return (
         <div className="postsSection">
@@ -27,8 +29,12 @@ const Posts = ({userId, posts, openPublishDialog, addLike, publishComment, handl
                                         <span>{post.content}</span>
                                     </div>
                                     <div className="bottomElements" onClick={(e) => e.stopPropagation()}>
-                                        <button className="likes" onClick={addLike} postid={post._id}><i className={post.likedBy.find(like => `${like._id}` === `${userId}`) ? "bi bi-suit-heart-fill filled" : "bi bi-suit-heart"}></i>{post.likedBy.length}</button>
+                                        <button className="author">
+                                            <img src={profilePic} alt=""/>
+                                            <span>{post.author.username}</span>
+                                        </button>
                                         <button className="comments" onClick={commentPost} postid={post.id}><i className={post.comments.commented === true ? "bi bi-chat-left-dots-fill filled" : "bi bi-chat-left-dots"}></i>{post.comments.allComments.length}</button>
+                                        <button className="likes" onClick={addLike} postid={post._id}><i className={post.likedBy.find(like => `${like._id}` === `${userId}`) ? "bi bi-suit-heart-fill filled" : "bi bi-suit-heart"}></i>{post.likedBy.length}</button>
                                     </div>
                                 </div>
                             ))
