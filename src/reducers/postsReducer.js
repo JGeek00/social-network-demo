@@ -39,6 +39,10 @@ export const post = (state = defaultState, action) => {
                 }
             });
             return updated;
+
+        case 'REMOVE_POST':
+            const newPosts = state.filter(post => post._id !== action.postId);
+            return newPosts;
     
         default:
             return state;

@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {checkLogin} from './services/auth';
 
-import Main from './components/Main.jsx';
-import Login from './components/Login';
-import TrendsPage from './components/TrendsPage';
+import Main from './pages/Main';
+import Login from './pages/Login';
+import TrendsPage from './pages/TrendsPage';
 
 import {loginActions} from './actions/loginActions';
 

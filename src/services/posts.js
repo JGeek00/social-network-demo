@@ -40,3 +40,15 @@ export const publishPostDb = async (post) => {
     });
     return response;
 }
+
+export const removePostDb = async (postId) => {
+    const response = await axios.delete(`${config.apiUrl}/posts`, {
+        headers: {
+            'x-access-token': localStorage.getItem('jwt')
+        },
+        data: {
+            postId
+        }
+    });
+    return response;
+}

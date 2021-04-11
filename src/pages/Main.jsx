@@ -5,11 +5,11 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import {fetchPosts, likePost, publishPostDb} from '../services/posts';
 
-import TopBar from './TopBar';
-import Publisher from './Publisher';
-import Trends from './Trends';
-import Posts from './Posts';
-import SideMenu from './SideMenu';
+import TopBar from '../components/TopBar';
+import Publisher from '../components/Publisher';
+import Trends from '../components/Trends';
+import Posts from '../components/Posts';
+import SideMenu from '../components/SideMenu';
 
 import {postActions} from '../actions/postActions';
 import {loginActions} from '../actions/loginActions';

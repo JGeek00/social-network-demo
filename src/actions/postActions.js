@@ -56,9 +56,19 @@ const updatePost = (post) => {
     }
 }
 
+const removePost = (postId) => {
+    return dispatch => {
+        dispatch({
+            type: 'REMOVE_POST',
+            postId
+        });
+    }
+}
+
 export const postActions = {
     createPost,
     updatePosts,
     setPosts,
-    updatePost
+    updatePost,
+    removePost
 }

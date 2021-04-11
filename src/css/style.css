@@ -495,7 +495,15 @@ body {
 .mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .author:active {
   background-color: rgba(0, 0, 0, 0.2);
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .likes {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements {
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  position: relative;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .likes {
   margin-right: 15px;
   padding: 5px 10px;
   cursor: pointer;
@@ -504,20 +512,20 @@ body {
   transition: 0.1s;
   float: right;
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .likes .filled {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .likes .filled {
   color: #dc3545;
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .likes:hover {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .likes:hover {
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.1);
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .likes:active {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .likes:active {
   background-color: rgba(0, 0, 0, 0.2);
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .likes:focus {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .likes:focus {
   outline: none;
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .comments {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .comments {
   padding: 5px 13px;
   cursor: pointer;
   border: none;
@@ -525,21 +533,109 @@ body {
   transition: 0.1s;
   float: right;
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .comments .filled {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .comments .filled {
   color: #0d6efd;
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .comments:hover {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .comments:hover {
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.1);
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .comments:active {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .comments:active {
   background-color: rgba(0, 0, 0, 0.2);
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .comments:focus {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .comments:focus {
   outline: none;
 }
-.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements i {
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements i {
   margin-right: 10px;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsBtnDiv {
+  padding-left: 20px;
+  margin-left: 20px;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  float: right;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsBtnDiv .postOptions {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  outline: none;
+  transition: 0.1s;
+  cursor: pointer;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsBtnDiv .postOptions > i {
+  margin-right: unset;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsBtnDiv .postOptions:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsBtnDiv .postOptions:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsMenuContainer .postOptionsMenu {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  right: -3px;
+  bottom: 40px;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 150;
+  box-shadow: 1px 12px 33px rgba(0, 0, 0, 0.5);
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsMenuContainer .postOptionsMenu:before {
+  border: 15px solid white;
+  content: "";
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  position: absolute;
+  bottom: -30px;
+  left: calc(90% - 25px);
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsMenuContainer .postOptionsMenu button {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  background-color: unset;
+  cursor: pointer;
+  transition: 0.1s;
+  font-weight: 200;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsMenuContainer .postOptionsMenu button > i {
+  margin-right: 10px;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsMenuContainer .postOptionsMenu button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsMenuContainer .postOptionsMenu button:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsMenuContainer .postOptionsMenu .topBtn {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsMenuContainer .postOptionsMenu .buttBtn {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .bottomElements .rightElements .postOptionsMenuContainer .postOptionsMenu .deleteBtn {
+  color: #dc3545;
+}
+.mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList .post .postOptionsMenuBase {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
 }
 .mainAppContainer .mainAppContent .pageBody .mainBody .postsSection .postsList::-webkit-scrollbar {
   width: 8px;
@@ -596,6 +692,84 @@ body {
 }
 .mainAppContainer .mainAppContent.sideMenuOpen {
   width: 100%;
+}
+
+.removePostModalContent {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.removePostModalContent > span {
+  margin: 40px 80px;
+  margin-bottom: 60px;
+  font-size: 20px;
+}
+.removePostModalContent > span > i {
+  margin-right: 20px;
+  font-size: 24px;
+}
+.removePostModalContent .buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.removePostModalContent .buttons .confirmRemovePost {
+  padding: 10px 10px;
+  font-size: 16px;
+  background-color: #198754;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(50% - 5px);
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.removePostModalContent .buttons .confirmRemovePost > i {
+  margin-right: 10px;
+  font-size: 22px;
+}
+.removePostModalContent .buttons .confirmRemovePost:hover {
+  background-color: #13613c;
+}
+.removePostModalContent .buttons .confirmRemovePost:active {
+  box-shadow: 0px 0px 10px 1px #13613c;
+}
+.removePostModalContent .buttons .cancelRemovePost {
+  padding: 10px 10px;
+  font-size: 16px;
+  background-color: #dc3545;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(50% - 5px);
+  margin-right: 10px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.removePostModalContent .buttons .cancelRemovePost > i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+.removePostModalContent .buttons .cancelRemovePost:hover {
+  background-color: #b12a37;
+}
+.removePostModalContent .buttons .cancelRemovePost:active {
+  box-shadow: 0px 0px 10px 1px #b12a37;
+}
+
+> .react-responsive-modal-closeButton {
+  display: none;
 }
 
 .logoutModal {
