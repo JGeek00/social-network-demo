@@ -72,15 +72,29 @@ const Posts = ({userId, posts, openPublishDialog, addLike, publishComment, handl
                                             <span>{post.author.username}</span>
                                         </button>
                                         <div className="rightElements">
-                                            <div className="postOptionsBtnDiv">
-                                                <button className="postOptions" onClick={() => setPostOptionsMenuOpen(post._id)}><i className="bi bi-three-dots"></i></button>
-                                            </div>
+                                            {
+                                                userId === post.author._id ? (
+                                                    <React.Fragment>
+                                                        <div className="postOptionsBtnDiv">
+                                                            <button className="postOptions" onClick={() => setPostOptionsMenuOpen(post._id)}><i className="bi bi-three-dots"></i></button>
+                                                        </div>
+                                                        <PostOptionsMenu postId={post._id} postOptionsMenuOpen={postOptionsMenuOpen} hidePostOptionsMenu={() => setPostOptionsMenuOpen(null)} removePost={removePost} />
+                                                    </React.Fragment>
+                                                ) : (
+                                                    <React.Fragment />
+                                                )
+                                            }
                                             <button className="comments" onClick={commentPost} postid={post.id}><i className={post.comments.commented === true ? "bi bi-chat-left-dots-fill filled" : "bi bi-chat-left-dots"}></i>{post.comments.allComments.length}</button>
                                             <button className="likes" onClick={addLike} postid={post._id}><i className={post.likedBy.find(like => `${like._id}` === `${userId}`) ? "bi bi-suit-heart-fill filled" : "bi bi-suit-heart"}></i>{post.likedBy.length}</button>
-                                            <PostOptionsMenu postId={post._id} postOptionsMenuOpen={postOptionsMenuOpen} hidePostOptionsMenu={() => setPostOptionsMenuOpen(null)} removePost={removePost} />
                                         </div>
                                     </div>
-                                    <PostOptionsMenuBase  postId={post._id} postOptionsMenuOpen={postOptionsMenuOpen} hidePostOptionsMenu={hidePostOptionsMenu}/>
+                                    {
+                                        userId === post.author._id ? (
+                                            <PostOptionsMenuBase  postId={post._id} postOptionsMenuOpen={postOptionsMenuOpen} hidePostOptionsMenu={hidePostOptionsMenu}/>
+                                        ) : (
+                                            <React.Fragment />
+                                        )
+                                    }
                                 </div>
                             ))
                         )
